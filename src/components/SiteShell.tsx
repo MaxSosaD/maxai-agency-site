@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { DottedSurface } from "@/components/DottedSurface";
@@ -15,7 +16,15 @@ export function SiteShell({
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
         <header className="flex items-center justify-between">
           <Link href={`/${locale}`} className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-lg bg-white/10 ring-1 ring-white/15" />
+            <div className="relative h-8 w-8">
+              <Image
+                src="/maxai-logo.svg"
+                alt="MaxAI"
+                fill
+                className="drop-shadow-[0_0_18px_rgba(57,255,20,0.25)]"
+                priority
+              />
+            </div>
             <div className="font-semibold tracking-tight">MaxAI</div>
           </Link>
 
