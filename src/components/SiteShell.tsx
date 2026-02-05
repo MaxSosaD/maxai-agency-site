@@ -10,10 +10,10 @@ export function SiteShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative min-h-dvh bg-[#050507] text-zinc-50">
+    <div className="relative min-h-dvh overflow-hidden bg-[#050507] text-zinc-50">
       <DottedSurface />
-      <div className="mx-auto max-w-6xl px-6 py-8">
-        <header className="relative flex items-center justify-between">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
+        <header className="flex items-center justify-between">
           <Link href={`/${locale}`} className="flex items-center gap-2">
             <div className="h-7 w-7 rounded-lg bg-white/10 ring-1 ring-white/15" />
             <div className="font-semibold tracking-tight">MaxAI</div>
