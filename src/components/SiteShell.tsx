@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { DottedSurface } from "@/components/DottedSurface";
+import { ProductsMenu } from "@/components/ProductsMenu";
 
 export function SiteShell({
   locale,
@@ -33,29 +34,7 @@ export function SiteShell({
               {locale === "es" ? "Servicios" : "Services"}
             </a>
 
-            {/* Products dropdown */}
-            <div className="group relative">
-              <button
-                type="button"
-                className="inline-flex items-center gap-1 hover:text-white"
-              >
-                {locale === "es" ? "Productos" : "Products"}
-                <span className="text-[10px] opacity-70">▾</span>
-              </button>
-              <div className="invisible absolute right-0 top-full z-50 mt-3 w-44 translate-y-1 rounded-xl border border-white/12 bg-black/70 p-2 opacity-0 shadow-[0_16px_50px_rgba(0,0,0,0.55)] backdrop-blur transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                <a
-                  href="https://maxdash-pi.vercel.app"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block rounded-lg px-3 py-2 text-sm text-zinc-100 hover:bg-white/10"
-                >
-                  MaxDash
-                  <div className="text-[11px] text-zinc-400">
-                    {locale === "es" ? "Dashboard" : "Dashboard"}
-                  </div>
-                </a>
-              </div>
-            </div>
+            <ProductsMenu locale={locale} />
 
             <a className="hover:text-white" href="#process">
               {locale === "es" ? "Proceso" : "Process"}
