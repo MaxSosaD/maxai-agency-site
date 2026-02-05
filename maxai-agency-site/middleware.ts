@@ -22,7 +22,7 @@ export function middleware(req: NextRequest) {
   if (first && isLocale(first)) return NextResponse.next();
 
   // Decide locale: geo country -> ES for spanish-speaking, otherwise EN.
-  const country = req.geo?.country?.toUpperCase();
+  const country = (req.headers.get("x-vercel-ip-country") ?? "").toUpperCase();
   let locale = defaultLocale;
 
   if (country && spanishCountryCodes.has(country)) {
