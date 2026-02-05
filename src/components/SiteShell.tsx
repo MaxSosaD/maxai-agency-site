@@ -15,23 +15,48 @@ export function SiteShell({
       <DottedSurface />
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
         <header className="flex items-center justify-between">
-          <Link href={`/${locale}`} className="flex items-center gap-2">
-            <div className="relative h-8 w-8">
+          <Link href={`/${locale}`} className="flex items-center gap-3">
+            <div className="relative h-10 w-10">
               <Image
                 src="/maxai-logo.svg"
                 alt="MaxAI"
                 fill
-                className="drop-shadow-[0_0_18px_rgba(57,255,20,0.25)]"
+                className="drop-shadow-[0_0_24px_rgba(57,255,20,0.32)]"
                 priority
               />
             </div>
-            <div className="font-semibold tracking-tight">MaxAI</div>
+            <div className="text-lg font-semibold tracking-tight">MaxAI</div>
           </Link>
 
-          <nav className="flex items-center gap-4 text-sm text-zinc-300">
+          <nav className="flex items-center gap-5 text-sm text-zinc-300">
             <a className="hover:text-white" href="#what">
               {locale === "es" ? "Servicios" : "Services"}
             </a>
+
+            {/* Products dropdown */}
+            <div className="group relative">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+              >
+                {locale === "es" ? "Productos" : "Products"}
+                <span className="text-[10px] opacity-70">▾</span>
+              </button>
+              <div className="invisible absolute right-0 top-full z-50 mt-3 w-44 translate-y-1 rounded-xl border border-white/12 bg-black/70 p-2 opacity-0 shadow-[0_16px_50px_rgba(0,0,0,0.55)] backdrop-blur transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <a
+                  href="https://maxdash-pi.vercel.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-lg px-3 py-2 text-sm text-zinc-100 hover:bg-white/10"
+                >
+                  MaxDash
+                  <div className="text-[11px] text-zinc-400">
+                    {locale === "es" ? "Dashboard" : "Dashboard"}
+                  </div>
+                </a>
+              </div>
+            </div>
+
             <a className="hover:text-white" href="#process">
               {locale === "es" ? "Proceso" : "Process"}
             </a>
