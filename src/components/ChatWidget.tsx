@@ -104,8 +104,9 @@ export function ChatWidget({ locale }: { locale: Locale }) {
       </div>
 
       <div className="mt-2 text-[11px] text-zinc-500">
-        MVP: respuestas tipo FAQ. Fase 2: conectar OpenAI + (opcional) voz con
-        ElevenLabs.
+        {locale === "es"
+          ? "MVP: respuestas tipo FAQ. Fase 2: conectar OpenAI + (opcional) voz con ElevenLabs."
+          : "MVP: FAQ-style answers. Phase 2: connect OpenAI + (optional) voice with ElevenLabs."}
       </div>
     </div>
   );
