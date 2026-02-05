@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
-import { GradientDots } from "@/components/GradientDots";
+import { DottedSurface } from "@/components/DottedSurface";
 
 export function SiteShell({
   locale,
@@ -11,7 +11,7 @@ export function SiteShell({
 }) {
   return (
     <div className="relative min-h-dvh bg-[#050507] text-zinc-50">
-      <GradientDots />
+      <DottedSurface />
       <div className="mx-auto max-w-6xl px-6 py-8">
         <header className="relative flex items-center justify-between">
           <Link href={`/${locale}`} className="flex items-center gap-2">

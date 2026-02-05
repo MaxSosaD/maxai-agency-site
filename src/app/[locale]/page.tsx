@@ -132,8 +132,8 @@ export default async function Page({
 
   return (
     <SiteShell locale={locale}>
-      <section className="mt-16 grid gap-10 md:grid-cols-2 md:items-start">
-        <div>
+      <section className="mt-16">
+        <div className="max-w-3xl">
           <Badge>{t.trust}</Badge>
           <p className="mt-6 text-sm uppercase tracking-widest text-zinc-300/80">
             {t.kicker}
@@ -162,26 +162,6 @@ export default async function Page({
             </div>
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
               {locale === "es" ? "Entrenamiento" : "Enablement"}
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-          <div className="text-sm text-zinc-300">
-            {locale === "es"
-              ? "Respuesta rápida, propuesta clara."
-              : "Fast diagnosis, clear proposal."}
-          </div>
-          <div className="mt-4 grid gap-3 text-sm text-zinc-200/90">
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-              {locale === "es"
-                ? "• Diagnóstico del flujo\n• MVP en 1–2 semanas\n• Producción 3–6 semanas"
-                : "• Workflow diagnosis\n• MVP in 1–2 weeks\n• Production 3–6 weeks"}
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-              {locale === "es"
-                ? "Bot IA: abre el chat abajo a la derecha."
-                : "AI bot: open the chat in the bottom-right."}
             </div>
           </div>
         </div>
