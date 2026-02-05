@@ -15,6 +15,7 @@ export function DottedSurface({
     if (!container) return;
 
     // Respect reduced motion + avoid heavy WebGL on tiny screens.
+    // On small screens we keep a CSS fallback background (see return JSX below).
     const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")
       .matches;
     const isSmall = window.innerWidth < 640;
@@ -132,6 +133,29 @@ export function DottedSurface({
     <div
       ref={containerRef}
       className={`pointer-events-none fixed inset-0 z-0 ${className}`}
-    />
+    >
+      {/* CSS fallback (mobile / reduced motion): subtle futuristic gradient */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-70"
+        style={{
+          background:
+            "radial-gradient(900px 600px at 20% 10%, rgba(99,102,241,0.22), transparent 60%), radial-gradient(700px 520px at 80% 18%, rgba(236,72,153,0.18), transparent 55%), radial-gradient(700px 520px at 55% 90%, rgba(34,211,238,0.14), transparent 60%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.32]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0)",
+          backgroundSize: "22px 22px",
+          maskImage:
+            "radial-gradient(700px 520px at 30% 20%, black 35%, transparent 78%)",
+          WebkitMaskImage:
+            "radial-gradient(700px 520px at 30% 20%, black 35%, transparent 78%)",
+        }}
+      />
+    </div>
   );
 }
