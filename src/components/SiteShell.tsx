@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
+import { GradientDots } from "@/components/GradientDots";
 
 export function SiteShell({
   locale,
@@ -9,9 +10,10 @@ export function SiteShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-dvh bg-[radial-gradient(1200px_circle_at_20%_10%,rgba(255,255,255,0.08),transparent_50%),radial-gradient(800px_circle_at_80%_20%,rgba(99,102,241,0.18),transparent_45%),linear-gradient(to_bottom,#050505,#0b0b10_55%,#050505)] text-zinc-50">
+    <div className="relative min-h-dvh bg-[#050507] text-zinc-50">
+      <GradientDots />
       <div className="mx-auto max-w-6xl px-6 py-8">
-        <header className="flex items-center justify-between">
+        <header className="relative flex items-center justify-between">
           <Link href={`/${locale}`} className="flex items-center gap-2">
             <div className="h-7 w-7 rounded-lg bg-white/10 ring-1 ring-white/15" />
             <div className="font-semibold tracking-tight">MaxAI</div>

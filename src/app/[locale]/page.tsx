@@ -1,5 +1,5 @@
 import { Badge } from "@/components/Badge";
-import { ChatWidget } from "@/components/ChatWidget";
+import { FloatingChat } from "@/components/FloatingChat";
 import { SectionCard } from "@/components/SectionCard";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
@@ -167,8 +167,23 @@ export default async function Page({
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-          <div className="text-sm text-zinc-300">{t.botTitle}</div>
-          <ChatWidget locale={locale} />
+          <div className="text-sm text-zinc-300">
+            {locale === "es"
+              ? "Respuesta rápida, propuesta clara."
+              : "Fast diagnosis, clear proposal."}
+          </div>
+          <div className="mt-4 grid gap-3 text-sm text-zinc-200/90">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              {locale === "es"
+                ? "• Diagnóstico del flujo\n• MVP en 1–2 semanas\n• Producción 3–6 semanas"
+                : "• Workflow diagnosis\n• MVP in 1–2 weeks\n• Production 3–6 weeks"}
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              {locale === "es"
+                ? "Bot IA: abre el chat abajo a la derecha."
+                : "AI bot: open the chat in the bottom-right."}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -225,6 +240,8 @@ export default async function Page({
           />
         </div>
       </section>
+
+      <FloatingChat locale={locale} />
     </SiteShell>
   );
 }
