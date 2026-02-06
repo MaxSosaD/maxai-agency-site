@@ -7,42 +7,42 @@ import type { Locale } from "@/lib/i18n";
 
 const copy = {
   en: {
-    kicker: "Automation with AI for businesses that sell on WhatsApp.",
-    headline: "More appointments. More leads. Less time answering the same questions.",
-    sub: "MaxAI builds practical AI automations for small businesses — intake, follow‑up, scheduling, and FAQs — so you can respond faster and close more.",
+    kicker: "Automation with AI for real business processes.",
+    headline: "Reduce time, improve customer experience, and scale your operation.",
+    sub: "MaxAI identifies high‑ROI opportunities and builds AI automations and agents (scheduling, follow‑up, support, reporting) integrated with your tools: WhatsApp, web, email, CRMs, and more.",
     cta: "Request a quote on WhatsApp",
     ctaPrefill:
-      "Hi MaxAI — I’d like to request a quote.\n\nBusiness type: \nGoal (appointments/leads/follow-up/support): \nCity: \nUrgency: \n\nIf you can, add: your WhatsApp name + best time to reply.",
-    secondary: "See what we build",
-    trust: "Fast. Practical. Production‑ready.",
+      "Hi MaxAI — I’d like to request a quote.\n\nBusiness type: \nGoal (scheduling/leads/follow-up/support): \nCity: \nUrgency: \n\nIf you can, add: your WhatsApp name + best time to reply.",
+    secondary: "Request a diagnosis",
+    trust: "Practical. Measurable. Production‑ready.",
     services: [
       {
-        title: "WhatsApp Lead Intake",
-        body: "Capture and qualify leads automatically — with clean handoff to a human.",
-        bullets: ["Qualification", "Routing", "FAQ answers"],
+        title: "Scheduling & Operations",
+        body: "Automate appointment booking, reminders, intake, and internal ops workflows.",
+        bullets: ["Calendar", "Reminders", "Intake"],
       },
       {
-        title: "Scheduling & Follow‑Up",
-        body: "Automate appointment booking, reminders, and reactivation sequences.",
-        bullets: ["Calendar", "Reminders", "Reactivation"],
+        title: "Lead intake & follow‑up",
+        body: "Capture, qualify, and follow up across channels — with human handoff.",
+        bullets: ["Qualification", "Routing", "Sequences"],
       },
       {
-        title: "Integrations",
-        body: "Connect WhatsApp + Instagram + web forms to Sheets/CRM and internal tools.",
-        bullets: ["Webhooks", "APIs", "Sheets/CRM"],
+        title: "Support & Knowledge",
+        body: "Answer FAQs and reduce repetitive support using your docs and policies.",
+        bullets: ["FAQs", "Knowledge base", "Consistency"],
       },
     ],
     industryTitle: "Common use cases",
     industries: [
       {
         title: "Clinics",
-        body: "Scheduling, reminders, and pre‑consultation intake on WhatsApp.",
-        bullets: ["Appointments", "FAQ", "Reminders"],
+        body: "Scheduling, reminders, and pre‑consultation intake (WhatsApp optional).",
+        bullets: ["Appointments", "Intake", "Reminders"],
       },
       {
         title: "Real estate",
-        body: "Qualification + follow‑up, property sheets, and faster response times.",
-        bullets: ["Lead qualification", "Follow‑up", "Property info"],
+        body: "Qualification + follow‑up, property info, and faster response times.",
+        bullets: ["Qualification", "Follow‑up", "Property info"],
       },
       {
         title: "Travel agencies",
@@ -50,19 +50,23 @@ const copy = {
         bullets: ["Guided quote", "Follow‑up", "Upsells"],
       },
     ],
+    diagnosisTitle: "Not sure where AI fits?",
+    diagnosisBody:
+      "Request a quick diagnosis: we review your workflow, identify the best first automation, and outline scope and next steps.",
+    diagnosisCta: "Request diagnosis on WhatsApp",
     processTitle: "How we work",
     process: [
       {
-        title: "1) Quick diagnosis",
-        body: "We learn your flow and identify the shortest path to ROI.",
+        title: "1) Diagnose",
+        body: "We map your workflow and pick the highest‑ROI first step.",
       },
       {
-        title: "2) Build the first automation",
-        body: "We ship an MVP fast and measure results.",
+        title: "2) Build",
+        body: "We ship an MVP fast with clear success metrics.",
       },
       {
-        title: "3) Iterate",
-        body: "We improve, add integrations, and scale what works.",
+        title: "3) Deploy & iterate",
+        body: "We integrate, monitor, and expand what works.",
       },
     ],
     botTitle: "Ask MaxAI",
@@ -73,47 +77,47 @@ const copy = {
         a: "Yes — tell us your business type, goal, city, and urgency. We’ll reply with a recommendation and next steps.",
       },
       {
-        q: "Do you work with small businesses?",
-        a: "Yes. We focus on practical automations that save time and increase conversions.",
+        q: "Do you only work on WhatsApp automations?",
+        a: "No. We can build and integrate across WhatsApp, web, email, CRMs, and internal tools.",
       },
       {
-        q: "How fast can we start?",
-        a: "Often within days for the first automation, depending on integrations.",
+        q: "What if I’m not sure I need AI?",
+        a: "Request a diagnosis. We’ll identify opportunities and recommend the shortest path to ROI.",
       },
     ],
   },
   es: {
-    kicker: "Automatización con IA para negocios que venden por WhatsApp.",
-    headline: "Más citas. Más prospectos. Menos tiempo contestando lo mismo.",
-    sub: "MaxAI construye automatizaciones prácticas con IA para negocios pequeños: captación, seguimiento, agenda y FAQs — para responder más rápido y cerrar más.",
+    kicker: "Automatización con IA para procesos reales de negocio.",
+    headline: "Reduce tiempos, mejora la atención y escala tu operación.",
+    sub: "MaxAI identifica oportunidades con ROI y construye automatizaciones y agentes (agenda, seguimiento, soporte, reportes) integrados con tus herramientas: WhatsApp, web, email, CRMs y más.",
     cta: "Pide tu cotización por WhatsApp",
     ctaPrefill:
-      "Hola MaxAI — me gustaría una cotización.\n\nGiro: \nObjetivo (citas/leads/seguimiento/soporte): \nCiudad: \nUrgencia: \n\nSi puedes, agrega: tu nombre en WhatsApp + mejor horario para responderte.",
-    secondary: "Ver qué hacemos",
-    trust: "Rápido. Práctico. Listo para producción.",
+      "Hola MaxAI — me gustaría una cotización.\n\nGiro: \nObjetivo (agenda/leads/seguimiento/soporte): \nCiudad: \nUrgencia: \n\nSi puedes, agrega: tu nombre en WhatsApp + mejor horario para responderte.",
+    secondary: "Solicitar diagnóstico",
+    trust: "Práctico. Medible. Listo para producción.",
     services: [
       {
-        title: "Captación por WhatsApp",
-        body: "Captura y califica leads automáticamente — con handoff limpio a una persona.",
-        bullets: ["Calificación", "Enrutamiento", "Respuestas a FAQs"],
+        title: "Agenda & operaciones",
+        body: "Automatiza citas, recordatorios, intake y flujos operativos internos.",
+        bullets: ["Calendario", "Recordatorios", "Intake"],
       },
       {
-        title: "Agenda & seguimiento",
-        body: "Automatiza citas, recordatorios y reactivación de prospectos.",
-        bullets: ["Calendario", "Recordatorios", "Reactivación"],
+        title: "Captación & seguimiento",
+        body: "Captura, califica y da seguimiento en varios canales — con handoff humano.",
+        bullets: ["Calificación", "Enrutamiento", "Secuencias"],
       },
       {
-        title: "Integraciones",
-        body: "Conecta WhatsApp + Instagram + formularios web con Sheets/CRM y herramientas internas.",
-        bullets: ["Webhooks", "APIs", "Sheets/CRM"],
+        title: "Soporte & conocimiento",
+        body: "Responde FAQs y reduce soporte repetitivo usando tus docs y políticas.",
+        bullets: ["FAQs", "Base de conocimiento", "Consistencia"],
       },
     ],
     industryTitle: "Casos de uso comunes",
     industries: [
       {
         title: "Consultorios",
-        body: "Agenda, recordatorios e intake pre‑consulta por WhatsApp.",
-        bullets: ["Citas", "FAQ", "Recordatorios"],
+        body: "Agenda, recordatorios e intake pre‑consulta (WhatsApp opcional).",
+        bullets: ["Citas", "Intake", "Recordatorios"],
       },
       {
         title: "Bienes raíces",
@@ -126,19 +130,23 @@ const copy = {
         bullets: ["Cotización guiada", "Seguimiento", "Upsells"],
       },
     ],
+    diagnosisTitle: "¿No sabes si tu negocio necesita IA?",
+    diagnosisBody:
+      "Pide un diagnóstico rápido: revisamos tu flujo, identificamos la mejor primera automatización y te damos alcance y siguientes pasos.",
+    diagnosisCta: "Pedir diagnóstico por WhatsApp",
     processTitle: "Cómo trabajamos",
     process: [
       {
-        title: "1) Diagnóstico rápido",
-        body: "Entendemos tu flujo y definimos el camino más corto a ROI.",
+        title: "1) Diagnóstico",
+        body: "Mapeamos tu flujo y definimos el primer paso con mayor ROI.",
       },
       {
-        title: "2) Primera automatización",
-        body: "Lanzamos un MVP rápido y medimos resultados.",
+        title: "2) Construcción",
+        body: "Lanzamos un MVP rápido con métricas claras.",
       },
       {
-        title: "3) Iteración",
-        body: "Mejoramos, integramos herramientas y escalamos lo que funciona.",
+        title: "3) Despliegue e iteración",
+        body: "Integramos, monitoreamos y escalamos lo que funciona.",
       },
     ],
     botTitle: "Pregúntale a MaxAI",
@@ -149,12 +157,12 @@ const copy = {
         a: "Sí — dinos tu giro, objetivo, ciudad y urgencia. Te respondemos con recomendación y siguientes pasos.",
       },
       {
-        q: "¿Trabajan con negocios pequeños?",
-        a: "Sí. Nos enfocamos en automatizaciones prácticas que ahorran tiempo y aumentan conversiones.",
+        q: "¿Solo hacen automatizaciones en WhatsApp?",
+        a: "No. Podemos integrar WhatsApp, web, email, CRMs y herramientas internas.",
       },
       {
-        q: "¿Qué tan rápido se puede empezar?",
-        a: "Muchas veces en días para la primera automatización, según integraciones.",
+        q: "¿Y si no sé por dónde empezar?",
+        a: "Pide un diagnóstico. Identificamos oportunidades y te proponemos el camino más corto a ROI.",
       },
     ],
   },
@@ -184,7 +192,7 @@ export default async function Page({
           <div className="mt-8 flex flex-wrap gap-3">
             <WhatsAppCTA label={t.cta} prefill={t.ctaPrefill} />
             <a
-              href="#what"
+              href="#diagnosis"
               className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
             >
               {t.secondary}
@@ -234,6 +242,14 @@ export default async function Page({
         </div>
       </section>
 
+      <section id="diagnosis" className="mt-20 rounded-2xl border border-white/10 bg-white/[0.04] p-8">
+        <div className="text-lg font-semibold">{t.diagnosisTitle}</div>
+        <p className="mt-2 text-sm text-zinc-200/90">{t.diagnosisBody}</p>
+        <div className="mt-5">
+          <WhatsAppCTA label={t.diagnosisCta} prefill={t.ctaPrefill} />
+        </div>
+      </section>
+
       <section id="faq" className="mt-20">
         <h2 className="text-xl font-semibold">{t.faqTitle}</h2>
         <div className="mt-6 grid gap-4">
@@ -251,14 +267,12 @@ export default async function Page({
 
       <section className="mt-20 rounded-2xl border border-white/10 bg-white/[0.04] p-8">
         <div className="text-lg font-semibold">
-          {locale === "es"
-            ? "¿Listo para una evaluación rápida?"
-            : "Ready for a quick assessment?"}
+          {locale === "es" ? "¿Listo para cotizar?" : "Ready to request a quote?"}
         </div>
         <p className="mt-2 text-sm text-zinc-200/90">
           {locale === "es"
-            ? "Cuéntanos tu caso y te proponemos el camino más corto a producción."
-            : "Tell us your case and we’ll propose the shortest path to production."}
+            ? "Cuéntanos tu caso y te damos recomendación y siguientes pasos."
+            : "Tell us your case and we’ll reply with a recommendation and next steps."}
         </p>
         <div className="mt-5">
           <WhatsAppCTA
