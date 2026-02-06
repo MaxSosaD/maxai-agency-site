@@ -7,116 +7,154 @@ import type { Locale } from "@/lib/i18n";
 
 const copy = {
   en: {
-    kicker: "We don’t just talk AI. We deliver it.",
-    headline: "A respected AI agency for teams that need results.",
-    sub: "MaxAI identifies the highest-ROI AI opportunities, builds production-grade systems, and helps your team adopt them — fast.",
-    cta: "Chat on WhatsApp",
-    ctaPrefill: "Hi MaxAI — I want to explore an AI project.",
-    secondary: "See services",
-    trust: "Secure, measurable, production-first.",
+    kicker: "Automation with AI for businesses that sell on WhatsApp.",
+    headline: "More appointments. More leads. Less time answering the same questions.",
+    sub: "MaxAI builds practical AI automations for small businesses — intake, follow‑up, scheduling, and FAQs — so you can respond faster and close more.",
+    cta: "Request a quote on WhatsApp",
+    ctaPrefill:
+      "Hi MaxAI — I’d like to request a quote.\n\nBusiness type: \nGoal (appointments/leads/follow-up/support): \nCity: \nUrgency: \n\nIf you can, add: your WhatsApp name + best time to reply.",
+    secondary: "See what we build",
+    trust: "Fast. Practical. Production‑ready.",
     services: [
       {
-        title: "AI Agents & Automation",
-        body: "From intake → execution → reporting. Agents that actually ship work, integrated with your tools.",
-        bullets: ["Lead intake", "Ops automation", "Internal copilots"],
+        title: "WhatsApp Lead Intake",
+        body: "Capture and qualify leads automatically — with clean handoff to a human.",
+        bullets: ["Qualification", "Routing", "FAQ answers"],
       },
       {
-        title: "RAG on Your Knowledge",
-        body: "Search + answers grounded in your docs, CRM, tickets, and policies — with citations.",
-        bullets: ["Docs/Notion/Drive", "CRM", "Support tickets"],
+        title: "Scheduling & Follow‑Up",
+        body: "Automate appointment booking, reminders, and reactivation sequences.",
+        bullets: ["Calendar", "Reminders", "Reactivation"],
       },
       {
         title: "Integrations",
-        body: "We connect AI into your stack: WhatsApp, Slack, email, web, and internal systems.",
-        bullets: ["Webhooks", "APIs", "Dashboards"],
+        body: "Connect WhatsApp + Instagram + web forms to Sheets/CRM and internal tools.",
+        bullets: ["Webhooks", "APIs", "Sheets/CRM"],
+      },
+    ],
+    industryTitle: "Common use cases",
+    industries: [
+      {
+        title: "Clinics",
+        body: "Scheduling, reminders, and pre‑consultation intake on WhatsApp.",
+        bullets: ["Appointments", "FAQ", "Reminders"],
+      },
+      {
+        title: "Real estate",
+        body: "Qualification + follow‑up, property sheets, and faster response times.",
+        bullets: ["Lead qualification", "Follow‑up", "Property info"],
+      },
+      {
+        title: "Travel agencies",
+        body: "Guided quoting and itinerary follow‑ups — without losing leads.",
+        bullets: ["Guided quote", "Follow‑up", "Upsells"],
       },
     ],
     processTitle: "How we work",
     process: [
       {
-        title: "1) Diagnose",
-        body: "We map your workflow and find the 5% of opportunities worth building.",
+        title: "1) Quick diagnosis",
+        body: "We learn your flow and identify the shortest path to ROI.",
       },
       {
-        title: "2) Build",
-        body: "We implement an MVP quickly, with clear metrics and security in mind.",
+        title: "2) Build the first automation",
+        body: "We ship an MVP fast and measure results.",
       },
       {
-        title: "3) Deploy & Train",
-        body: "We ship to production, monitor, iterate, and train your team for adoption.",
+        title: "3) Iterate",
+        body: "We improve, add integrations, and scale what works.",
       },
     ],
     botTitle: "Ask MaxAI",
     faqTitle: "FAQ",
     faqs: [
       {
-        q: "Do you support crypto payments?",
-        a: "Yes — we can add USDC/BTC rails as phase 2 (webhooks + reconciliation).",
+        q: "Can I request a quote via WhatsApp?",
+        a: "Yes — tell us your business type, goal, city, and urgency. We’ll reply with a recommendation and next steps.",
       },
       {
-        q: "How fast can you ship?",
-        a: "Most MVPs take 1–2 weeks; production rollouts typically 3–6 weeks.",
+        q: "Do you work with small businesses?",
+        a: "Yes. We focus on practical automations that save time and increase conversions.",
       },
       {
-        q: "What do you need from us?",
-        a: "Access to the workflow (and optionally tools/APIs). We handle the rest end-to-end.",
+        q: "How fast can we start?",
+        a: "Often within days for the first automation, depending on integrations.",
       },
     ],
   },
   es: {
-    kicker: "No solo hablamos de IA. La entregamos.",
-    headline: "Una agencia de IA respetada, enfocada en resultados.",
-    sub: "MaxAI identifica oportunidades de IA con ROI real, construye sistemas listos para producción y ayuda a tu equipo a adoptarlos — rápido.",
-    cta: "Escríbenos por WhatsApp",
-    ctaPrefill: "Hola MaxAI — quiero explorar un proyecto de IA.",
-    secondary: "Ver servicios",
-    trust: "Seguro, medible, listo para producción.",
+    kicker: "Automatización con IA para negocios que venden por WhatsApp.",
+    headline: "Más citas. Más prospectos. Menos tiempo contestando lo mismo.",
+    sub: "MaxAI construye automatizaciones prácticas con IA para negocios pequeños: captación, seguimiento, agenda y FAQs — para responder más rápido y cerrar más.",
+    cta: "Pide tu cotización por WhatsApp",
+    ctaPrefill:
+      "Hola MaxAI — me gustaría una cotización.\n\nGiro: \nObjetivo (citas/leads/seguimiento/soporte): \nCiudad: \nUrgencia: \n\nSi puedes, agrega: tu nombre en WhatsApp + mejor horario para responderte.",
+    secondary: "Ver qué hacemos",
+    trust: "Rápido. Práctico. Listo para producción.",
     services: [
       {
-        title: "Agentes & Automatización",
-        body: "De intake → ejecución → reporte. Agentes que entregan trabajo real, integrados con tus herramientas.",
-        bullets: ["Intake de leads", "Automatización ops", "Copilots internos"],
+        title: "Captación por WhatsApp",
+        body: "Captura y califica leads automáticamente — con handoff limpio a una persona.",
+        bullets: ["Calificación", "Enrutamiento", "Respuestas a FAQs"],
       },
       {
-        title: "RAG sobre tu conocimiento",
-        body: "Búsqueda + respuestas basadas en tus docs, CRM, tickets y políticas — con citas.",
-        bullets: ["Docs/Notion/Drive", "CRM", "Soporte"],
+        title: "Agenda & seguimiento",
+        body: "Automatiza citas, recordatorios y reactivación de prospectos.",
+        bullets: ["Calendario", "Recordatorios", "Reactivación"],
       },
       {
         title: "Integraciones",
-        body: "Conectamos IA a tu stack: WhatsApp, Slack, email, web y sistemas internos.",
-        bullets: ["Webhooks", "APIs", "Dashboards"],
+        body: "Conecta WhatsApp + Instagram + formularios web con Sheets/CRM y herramientas internas.",
+        bullets: ["Webhooks", "APIs", "Sheets/CRM"],
+      },
+    ],
+    industryTitle: "Casos de uso comunes",
+    industries: [
+      {
+        title: "Consultorios",
+        body: "Agenda, recordatorios e intake pre‑consulta por WhatsApp.",
+        bullets: ["Citas", "FAQ", "Recordatorios"],
+      },
+      {
+        title: "Bienes raíces",
+        body: "Calificación + seguimiento, fichas de propiedades y respuestas más rápidas.",
+        bullets: ["Calificación", "Seguimiento", "Info de propiedades"],
+      },
+      {
+        title: "Agencias de viajes",
+        body: "Cotización guiada y seguimiento de itinerarios — sin perder leads.",
+        bullets: ["Cotización guiada", "Seguimiento", "Upsells"],
       },
     ],
     processTitle: "Cómo trabajamos",
     process: [
       {
-        title: "1) Diagnóstico",
-        body: "Mapeamos el flujo y encontramos el 5% de oportunidades que sí valen la pena.",
+        title: "1) Diagnóstico rápido",
+        body: "Entendemos tu flujo y definimos el camino más corto a ROI.",
       },
       {
-        title: "2) Construcción",
-        body: "Implementamos un MVP rápido, con métricas claras y seguridad.",
+        title: "2) Primera automatización",
+        body: "Lanzamos un MVP rápido y medimos resultados.",
       },
       {
-        title: "3) Despliegue & entrenamiento",
-        body: "Lanzamos en producción, monitoreamos, iteramos y entrenamos para adopción real.",
+        title: "3) Iteración",
+        body: "Mejoramos, integramos herramientas y escalamos lo que funciona.",
       },
     ],
     botTitle: "Pregúntale a MaxAI",
     faqTitle: "FAQ",
     faqs: [
       {
-        q: "¿Aceptan pagos en cripto?",
-        a: "Sí — podemos agregar rieles (USDC/BTC) como fase 2 (webhooks + conciliación).",
+        q: "¿Puedo pedir cotización por WhatsApp?",
+        a: "Sí — dinos tu giro, objetivo, ciudad y urgencia. Te respondemos con recomendación y siguientes pasos.",
       },
       {
-        q: "¿En cuánto tiempo entregan?",
-        a: "La mayoría de MVPs: 1–2 semanas; producción: 3–6 semanas.",
+        q: "¿Trabajan con negocios pequeños?",
+        a: "Sí. Nos enfocamos en automatizaciones prácticas que ahorran tiempo y aumentan conversiones.",
       },
       {
-        q: "¿Qué necesitan de nosotros?",
-        a: "Acceso al flujo (y si aplica APIs/herramientas). Nosotros hacemos end-to-end.",
+        q: "¿Qué tan rápido se puede empezar?",
+        a: "Muchas veces en días para la primera automatización, según integraciones.",
       },
     ],
   },
@@ -173,6 +211,15 @@ export default async function Page({
         </h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {t.services.map((s) => (
+            <SectionCard key={s.title} title={s.title} body={s.body} bullets={s.bullets} />
+          ))}
+        </div>
+      </section>
+
+      <section id="industry" className="mt-20">
+        <h2 className="text-xl font-semibold">{t.industryTitle}</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {t.industries.map((s) => (
             <SectionCard key={s.title} title={s.title} body={s.body} bullets={s.bullets} />
           ))}
         </div>

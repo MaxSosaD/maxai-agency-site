@@ -14,45 +14,49 @@ export async function POST(req: Request) {
   const m = message.toLowerCase();
 
   const intents = {
-    pricing: ["precio", "costo", "cuanto", "cotiz", "price", "cost", "pricing"],
+    quote: ["cotiz", "precio", "costo", "cuanto", "quote", "price", "cost", "pricing"],
     timeline: ["tiempo", "cuando", "timeline", "how long"],
     services: ["servicio", "hacen", "ofrecen", "what do you do", "services"],
     contact: ["contacto", "whatsapp", "telefono", "call", "meeting"],
-    crypto: ["crypto", "cripto", "bitcoin", "usdc", "pago"],
+    industries: [
+      "consultorio",
+      "clinica",
+      "dentista",
+      "bienes raices",
+      "inmobili",
+      "real estate",
+      "viaje",
+      "travel",
+    ],
   } as const;
 
   const has = (keys: readonly string[]) => keys.some((k) => m.includes(k));
 
   let replyEs =
-    "Soy el bot de MaxAI. Ayudamos a empresas a identificar oportunidades de IA con ROI, construir agentes/automatizaciones y desplegarlas en producción. ¿Qué proceso quieres acelerar o qué sistema quieres mejorar?";
+    "Soy el asistente de MaxAI. Ayudamos a negocios a capturar leads, dar seguimiento y automatizar atención (especialmente por WhatsApp). ¿Qué tipo de negocio tienes y qué quieres mejorar primero: citas, leads o seguimiento?";
   let replyEn =
-    "I’m MaxAI’s bot. We help teams find high-ROI AI opportunities, build agents/automations, and deploy them into production. What process are you trying to speed up or improve?";
+    "I’m MaxAI’s assistant. We help small businesses capture leads, follow up, and automate customer support (often on WhatsApp). What kind of business is it, and what do you want to improve first: appointments, leads, or follow-up?";
 
   if (has(intents.services)) {
     replyEs =
-      "MaxAI puede ayudarte con: (1) automatización con agentes, (2) RAG sobre tus documentos/CRM, (3) copilots internos, (4) integraciones (Slack/WhatsApp/Email), (5) analítica + dashboards. ¿Qué industria y qué objetivo tienes?";
+      "MaxAI implementa automatizaciones con IA (captación, calificación, seguimiento, agenda y FAQs) e integraciones con WhatsApp/Instagram/web. ¿Eres consultorio, bienes raíces o agencia de viajes?";
     replyEn =
-      "MaxAI can help with: (1) agent automations, (2) RAG over your docs/CRM, (3) internal copilots, (4) integrations (Slack/WhatsApp/Email), (5) analytics + dashboards. What industry and goal do you have?";
-  } else if (has(intents.pricing)) {
+      "MaxAI builds AI automations (intake, qualification, follow-up, scheduling, FAQs) and integrates with WhatsApp/Instagram/web. Are you a clinic, real estate, or travel agency?";
+  } else if (has(intents.industries)) {
     replyEs =
-      "Te puedo dar un rango. 3 preguntas rápidas: (1) ¿qué proceso? (2) ¿con qué herramientas se integra? (3) ¿cuántos usuarios/eventos al día?";
+      "Perfecto. Para recomendarte la mejor primera automatización: (1) ¿qué quieres mejorar: citas/leads/seguimiento? (2) ¿por dónde llegan hoy tus prospectos? (3) ¿urgencia: esta semana o este mes? Si quieres, pídeme una cotización por WhatsApp y te guiamos.";
     replyEn =
-      "I can give you a range. 3 quick questions: (1) what process? (2) what tools does it integrate with? (3) how many users/events per day?";
+      "Great. To recommend the best first automation: (1) what do you want to improve—appointments/leads/follow-up? (2) where do leads come from today? (3) urgency—this week or this month? You can also request a quote via WhatsApp and we’ll guide you.";
+  } else if (has(intents.quote) || has(intents.contact)) {
+    replyEs =
+      "Claro. Puedes pedir tu cotización por WhatsApp. Compárteme: giro, objetivo (citas/leads/seguimiento), ciudad y urgencia. Con eso te damos una recomendación y el siguiente paso.";
+    replyEn =
+      "Sure. You can request a quote on WhatsApp. Share: business type, goal (appointments/leads/follow-up), city, and urgency. Then we’ll recommend the best next step.";
   } else if (has(intents.timeline)) {
     replyEs =
-      "Depende del alcance: un MVP suele ser 1–2 semanas; producción 3–6 semanas. ¿Buscas MVP rápido o producción completa?";
+      "Para negocios pequeños, una primera automatización suele estar lista en días (según alcance e integraciones). Si me dices tu giro y objetivo, te digo cuál sería el camino más corto.";
     replyEn =
-      "It depends on scope: an MVP is often 1–2 weeks; production 3–6 weeks. Are you aiming for a fast MVP or a full production rollout?";
-  } else if (has(intents.crypto)) {
-    replyEs =
-      "Sí: podemos dejar pagos crypto como fase 2 (ej. USDC) con webhooks y conciliación. Primero lancemos el sitio y definamos tu oferta. ¿Qué pagos te interesan?";
-    replyEn =
-      "Yes: we can add crypto payments as phase 2 (e.g., USDC) with webhooks and reconciliation. First let’s launch the site and define the offer. Which rails do you want?";
-  } else if (has(intents.contact)) {
-    replyEs =
-      "¿Te contacto por WhatsApp? Pídeme que te mande el link y dime si prefieres un diagnóstico rápido o una llamada.";
-    replyEn =
-      "Want to connect on WhatsApp? Ask me for the link and tell me if you prefer a quick diagnosis or a call.";
+      "For small businesses, a first automation is often ready in days (depending on scope and integrations). Tell me your business type and goal and I’ll suggest the shortest path.";
   }
 
   return NextResponse.json({ reply: locale === "es" ? replyEs : replyEn });
