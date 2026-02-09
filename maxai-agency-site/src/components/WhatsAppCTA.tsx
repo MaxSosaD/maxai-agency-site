@@ -1,7 +1,15 @@
-const WHATSAPP_NUMBER = "+524433892078"; // E.164 no spaces
+const WHATSAPP_NUMBER = "+52 4433 892078";
 
-export function WhatsAppCTA({ label }: { label: string }) {
-  const url = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, "")}`;
+export function WhatsAppCTA({
+  label,
+  prefill,
+}: {
+  label: string;
+  prefill?: string;
+}) {
+  const number = WHATSAPP_NUMBER.replace(/\D/g, "");
+  const base = `https://wa.me/${number}`;
+  const url = prefill ? `${base}?text=${encodeURIComponent(prefill)}` : base;
   return (
     <a
       href={url}
