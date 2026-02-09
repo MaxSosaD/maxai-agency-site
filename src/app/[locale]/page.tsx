@@ -4,6 +4,7 @@ import { SectionCard } from "@/components/SectionCard";
 import { SiteShell } from "@/components/SiteShell";
 import { WarmHeroBackdrop } from "@/components/WarmHeroBackdrop";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
+import { CalendlyCTA } from "@/components/CalendlyCTA";
 import type { Locale } from "@/lib/i18n";
 
 const copy = {
@@ -14,7 +15,7 @@ const copy = {
     cta: "Request a quote on WhatsApp",
     ctaPrefill:
       "Hi MaxAI — I’d like to request a quote.\n\nBusiness type: \nGoal (scheduling/leads/follow-up/support): \nCity: \nUrgency: \n\nIf you can, add: your WhatsApp name + best time to reply.",
-    secondary: "Request a diagnosis",
+    secondary: "Book a 20‑min diagnosis",
     trust: "Practical. Measurable. Production‑ready.",
     services: [
       {
@@ -94,7 +95,7 @@ const copy = {
     cta: "Pide tu cotización por WhatsApp",
     ctaPrefill:
       "Hola MaxAI — me gustaría una cotización.\n\nGiro: \nObjetivo (agenda/leads/seguimiento/soporte): \nCiudad: \nUrgencia: \n\nSi puedes, agrega: tu nombre en WhatsApp + mejor horario para responderte.",
-    secondary: "Solicitar diagnóstico",
+    secondary: "Agenda diagnóstico (20 min)",
     trust: "Práctico. Medible. Listo para producción.",
     services: [
       {
@@ -207,12 +208,7 @@ export default async function Page({
 
               <div className="mt-9 flex flex-wrap gap-3">
                 <WhatsAppCTA label={t.cta} prefill={t.ctaPrefill} />
-                <a
-                  href="#diagnosis"
-                  className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
-                >
-                  {t.secondary}
-                </a>
+                <CalendlyCTA label={t.secondary} />
               </div>
 
               <div className="mt-10 grid grid-cols-3 gap-3 text-xs text-zinc-100/80">
@@ -339,7 +335,10 @@ export default async function Page({
       <section id="diagnosis" className="mt-20 rounded-2xl border border-white/10 bg-white/[0.04] p-8">
         <div className="text-lg font-semibold">{t.diagnosisTitle}</div>
         <p className="mt-2 text-sm text-zinc-200/90">{t.diagnosisBody}</p>
-        <div className="mt-5">
+        <div className="mt-5 flex flex-wrap gap-3">
+          <CalendlyCTA
+            label={locale === "es" ? "Agendar en Calendly" : "Book on Calendly"}
+          />
           <WhatsAppCTA label={t.diagnosisCta} prefill={t.ctaPrefill} />
         </div>
       </section>
