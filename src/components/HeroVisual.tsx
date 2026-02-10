@@ -16,7 +16,11 @@ export function HeroVisual() {
 
     let raf = 0;
     function onMove(e: PointerEvent) {
-      const r = el.getBoundingClientRect();
+      // In strict TS mode, the ref target can be null by the time the event fires.
+      const node = ref.current;
+      if (!node) return;
+
+      const r = node.getBoundingClientRect();
       const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
       const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
       const x = clamp(nx, -1, 1);
