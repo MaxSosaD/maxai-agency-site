@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  defaultLocale,
-  isLocale,
-  pickLocaleFromHeaders,
-  spanishCountryCodes,
-} from "@/lib/i18n";
+import { isLocale } from "@/lib/i18n";
 
 export const config = {
   matcher: [
@@ -21,17 +16,9 @@ export function middleware(req: NextRequest) {
   const first = segments[0];
   if (first && isLocale(first)) return NextResponse.next();
 
-  // Decide locale: geo country -> ES for spanish-speaking, otherwise EN.
-  // Use Vercel's header to avoid NextRequest.geo typing differences across Next versions.
-  const country = (req.headers.get("x-vercel-ip-country") ?? "").toUpperCase();
-  let locale = defaultLocale;
-
-  if (country && spanishCountryCodes.has(country)) {
-    locale = "es";
-  } else {
-    // fallback to browser language
-    locale = pickLocaleFromHeaders(req.headers.get("accept-language"));
-  }
+  // Default locale: ES (initial audience).
+  // Users can switch to EN with the language toggle.
+  const locale = "es";
 
   const url = req.nextUrl.clone();
   url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;

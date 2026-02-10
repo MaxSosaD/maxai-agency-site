@@ -1,9 +1,9 @@
 import { Badge } from "@/components/Badge";
 import { FloatingChat } from "@/components/FloatingChat";
-import { SectionCard } from "@/components/SectionCard";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
+import { HeroBackdrop } from "@/components/HeroBackdrop";
 import { HeroVisual } from "@/components/HeroVisual";
 import type { Locale } from "@/lib/i18n";
 
@@ -181,14 +181,19 @@ export default async function Page({
 
   return (
     <SiteShell locale={locale}>
-      <section className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02]">
-        <div className="relative px-6 py-14 md:px-12 md:py-20">
-          <div className="relative z-10 grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
+      {/* Hero — minimal, full-bleed feel (RoboLabs-inspired) */}
+      <section className="relative mt-10 overflow-hidden rounded-[2.5rem] bg-transparent">
+        <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.02]">
+          <HeroBackdrop />
+          <div className="relative px-6 py-14 md:px-12 md:py-20">
+            <div className="relative z-10 grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
             <div className="max-w-xl">
-              <Badge>{t.trust}</Badge>
-              <p className="mt-6 text-sm uppercase tracking-widest text-zinc-100/80">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-100/70">
                 {t.kicker}
               </p>
+              <div className="mt-5">
+                <Badge>{t.trust}</Badge>
+              </div>
 
               <h1 className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-tight md:text-6xl md:tracking-[-0.02em]">
                 <span className="block text-white">{t.headline}</span>
@@ -203,49 +208,93 @@ export default async function Page({
                 <CalendlyCTA label={t.secondary} />
               </div>
 
-              <div className="mt-10 grid grid-cols-3 gap-3 text-xs text-zinc-100/80">
-                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-3">
+              <div className="mt-10 flex flex-wrap gap-2 text-xs text-zinc-100/70">
+                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
                   {locale === "es" ? "MVP rápido" : "Fast MVP"}
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
                   {locale === "es" ? "Producción" : "Production"}
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
                   {locale === "es" ? "Entrenamiento" : "Enablement"}
-                </div>
+                </span>
               </div>
             </div>
 
             <HeroVisual />
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="what" className="mt-20">
-        <h2 className="text-xl font-semibold">
-          {locale === "es" ? "Servicios" : "Services"}
-        </h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+      <section id="what" className="mt-24">
+        <div className="flex items-end justify-between gap-6">
+          <h2 className="text-2xl font-bold tracking-tight">
+            {locale === "es" ? "Lo que construimos" : "What we build"}
+          </h2>
+          <div className="hidden text-sm text-zinc-300 md:block">
+            {locale === "es"
+              ? "Agentes, automatizaciones e integraciones — sin humo."
+              : "Agents, automations, and integrations — no fluff."}
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-10 md:grid-cols-3">
           {t.services.map((s) => (
-            <SectionCard key={s.title} title={s.title} body={s.body} bullets={s.bullets} />
+            <div key={s.title} className="border-t border-white/10 pt-6">
+              <div className="text-lg font-semibold">{s.title}</div>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-200/90">
+                {s.body}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2 text-xs text-zinc-200/70">
+                {s.bullets.map((b) => (
+                  <span
+                    key={b}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section id="industry" className="mt-20">
-        <h2 className="text-xl font-semibold">{t.industryTitle}</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+      <section id="industry" className="mt-24">
+        <h2 className="text-2xl font-bold tracking-tight">{t.industryTitle}</h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-3">
           {t.industries.map((s) => (
-            <SectionCard key={s.title} title={s.title} body={s.body} bullets={s.bullets} />
+            <div key={s.title} className="border-t border-white/10 pt-6">
+              <div className="text-lg font-semibold">{s.title}</div>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-200/90">
+                {s.body}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2 text-xs text-zinc-200/70">
+                {s.bullets.map((b) => (
+                  <span
+                    key={b}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section id="process" className="mt-20">
-        <h2 className="text-xl font-semibold">{t.processTitle}</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+      <section id="process" className="mt-24">
+        <h2 className="text-2xl font-bold tracking-tight">{t.processTitle}</h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-3">
           {t.process.map((p) => (
-            <SectionCard key={p.title} title={p.title} body={p.body} />
+            <div key={p.title} className="border-t border-white/10 pt-6">
+              <div className="text-lg font-semibold">{p.title}</div>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-200/90">
+                {p.body}
+              </p>
+            </div>
           ))}
         </div>
       </section>
