@@ -5,13 +5,15 @@ import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
 import { HeroBackdrop } from "@/components/HeroBackdrop";
 import { HeroVisual } from "@/components/HeroVisual";
+import { Reveal } from "@/components/Reveal";
 import type { Locale } from "@/lib/i18n";
 
 const copy = {
   en: {
     kicker: "AI agency",
-    headline: "We don’t just use AI — we design the future of your business.",
-    sub: "Agents, automations, and intelligence that makes your work more human — and your operation more scalable.",
+    headline: "We don’t just use AI.",
+    headline2: "We design the future of your business.",
+    sub: "Intelligence that makes your work more human — and your operation more scalable.",
     cta: "Request a quote on WhatsApp",
     ctaPrefill:
       "Hi MaxAI — I’d like to request a quote.\n\nBusiness type: \nGoal (scheduling/leads/follow-up/support): \nCity: \nUrgency: \n\nIf you can, add: your WhatsApp name + best time to reply.",
@@ -90,8 +92,9 @@ const copy = {
   },
   es: {
     kicker: "Agencia de IA",
-    headline: "No solo usamos IA — diseñamos el futuro de tu negocio.",
-    sub: "Agentes, automatizaciones e inteligencia que hace tu trabajo más humano — y tu operación más escalable.",
+    headline: "No solo usamos IA.",
+    headline2: "Diseñamos el futuro de tu negocio.",
+    sub: "Inteligencia que hace tu trabajo más humano — y tu operación más escalable.",
     cta: "Pide tu cotización por WhatsApp",
     ctaPrefill:
       "Hola MaxAI — me gustaría una cotización.\n\nGiro: \nObjetivo (agenda/leads/seguimiento/soporte): \nCiudad: \nUrgencia: \n\nSi puedes, agrega: tu nombre en WhatsApp + mejor horario para responderte.",
@@ -195,8 +198,11 @@ export default async function Page({
                 <Badge>{t.trust}</Badge>
               </div>
 
-              <h1 className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-tight md:text-6xl md:tracking-[-0.02em]">
+              <h1 className="mt-5 text-5xl font-black leading-[0.98] tracking-[-0.03em] md:text-7xl">
                 <span className="block text-white">{t.headline}</span>
+                {"headline2" in t ? (
+                  <span className="mt-2 block text-white/95">{t.headline2}</span>
+                ) : null}
               </h1>
 
               <p className="mt-6 text-lg text-zinc-50/85 md:text-xl">
@@ -227,17 +233,19 @@ export default async function Page({
         </div>
       </section>
 
-      <section id="what" className="mt-24">
-        <div className="flex items-end justify-between gap-6">
-          <h2 className="text-2xl font-bold tracking-tight">
-            {locale === "es" ? "Lo que construimos" : "What we build"}
-          </h2>
-          <div className="hidden text-sm text-zinc-300 md:block">
-            {locale === "es"
-              ? "Agentes, automatizaciones e integraciones — sin humo."
-              : "Agents, automations, and integrations — no fluff."}
+      <section id="what" className="mt-28">
+        <Reveal>
+          <div className="flex items-end justify-between gap-6">
+            <h2 className="text-3xl font-black tracking-[-0.02em]">
+              {locale === "es" ? "Lo que construimos" : "What we build"}
+            </h2>
+            <div className="hidden text-sm text-zinc-300 md:block">
+              {locale === "es"
+                ? "Agentes, automatizaciones e integraciones — sin humo."
+                : "Agents, automations, and integrations — no fluff."}
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-10 grid gap-10 md:grid-cols-3">
           {t.services.map((s) => (
