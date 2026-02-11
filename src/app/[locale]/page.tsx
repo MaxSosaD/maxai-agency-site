@@ -1,10 +1,8 @@
-import { Badge } from "@/components/Badge";
 import { FloatingChat } from "@/components/FloatingChat";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
 import { HeroBackdrop } from "@/components/HeroBackdrop";
-import { HeroMinimal } from "@/components/HeroMinimal";
 import { Reveal } from "@/components/Reveal";
 import type { Locale } from "@/lib/i18n";
 
@@ -190,44 +188,52 @@ export default async function Page({
           <HeroBackdrop />
           <div className="relative px-6 py-14 md:px-12 md:py-20">
             <div className="relative z-10 grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
-            <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-100/70">
-                {t.kicker}
-              </p>
-              <div className="mt-5">
-                <Badge>{t.trust}</Badge>
+            <div className="hidden" />
+
+            <div className="mx-auto w-full max-w-5xl text-center">
+              <Reveal>
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-100/70">
+                  {t.kicker}
+                </div>
+              </Reveal>
+
+              <div className="mt-6">
+                <Reveal delayMs={80}>
+                  <h1 className="text-5xl font-black leading-[0.98] tracking-[-0.03em] text-white md:text-7xl">
+                    {t.headline}
+                    <br />
+                    {t.headline2}
+                  </h1>
+                </Reveal>
+
+                <Reveal delayMs={160}>
+                  <p className="mx-auto mt-6 max-w-3xl text-lg text-zinc-50/85 md:text-xl">
+                    {t.sub}
+                  </p>
+                </Reveal>
               </div>
 
-              <h1 className="mt-5 text-5xl font-black leading-[0.98] tracking-[-0.03em] md:text-7xl">
-                <span className="block text-white">{t.headline}</span>
-                {"headline2" in t ? (
-                  <span className="mt-2 block text-white/95">{t.headline2}</span>
-                ) : null}
-              </h1>
+              <Reveal delayMs={220}>
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                  <WhatsAppCTA label={t.cta} prefill={t.ctaPrefill} />
+                  <CalendlyCTA label={t.secondary} />
+                </div>
+              </Reveal>
 
-              <p className="mt-6 text-lg text-zinc-50/85 md:text-xl">
-                {t.sub}
-              </p>
-
-              <div className="mt-9 flex flex-wrap gap-3">
-                <WhatsAppCTA label={t.cta} prefill={t.ctaPrefill} />
-                <CalendlyCTA label={t.secondary} />
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-2 text-xs text-zinc-100/70">
-                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                  {locale === "es" ? "MVP rápido" : "Fast MVP"}
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                  {locale === "es" ? "Producción" : "Production"}
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                  {locale === "es" ? "Entrenamiento" : "Enablement"}
-                </span>
-              </div>
+              <Reveal delayMs={280}>
+                <div className="mt-10 flex flex-wrap justify-center gap-2 text-xs text-zinc-100/70">
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
+                    {locale === "es" ? "MVP rápido" : "Fast MVP"}
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
+                    {locale === "es" ? "Producción" : "Production"}
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
+                    {locale === "es" ? "Entrenamiento" : "Enablement"}
+                  </span>
+                </div>
+              </Reveal>
             </div>
-
-            <HeroMinimal />
             </div>
           </div>
         </div>
