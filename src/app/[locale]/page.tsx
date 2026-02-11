@@ -4,7 +4,7 @@ import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
 import { HeroBackdrop } from "@/components/HeroBackdrop";
-import { HeroVisual } from "@/components/HeroVisual";
+import { HeroMinimal } from "@/components/HeroMinimal";
 import { Reveal } from "@/components/Reveal";
 import type { Locale } from "@/lib/i18n";
 
@@ -227,7 +227,7 @@ export default async function Page({
               </div>
             </div>
 
-            <HeroVisual />
+            <HeroMinimal />
             </div>
           </div>
         </div>
