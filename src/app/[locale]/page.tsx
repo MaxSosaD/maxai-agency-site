@@ -1,358 +1,599 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import * as React from "react";
 import { FloatingChat } from "@/components/FloatingChat";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
-import { HeroBackdrop } from "@/components/HeroBackdrop";
-import { Reveal } from "@/components/Reveal";
 import type { Locale } from "@/lib/i18n";
 
-const copy = {
-  en: {
-    kicker: "AI agency",
-    headline: "We don’t just use AI.",
-    headline2: "We design the future of your business.",
-    sub: "Intelligence that makes your work more human — and your operation more scalable.",
-    cta: "Request a quote on WhatsApp",
-    ctaPrefill:
-      "Hi MaxAI — I’d like to request a quote.\n\nBusiness type: \nGoal (scheduling/leads/follow-up/support): \nCity: \nUrgency: \n\nIf you can, add: your WhatsApp name + best time to reply.",
-    secondary: "Book a 20‑min diagnosis",
-    trust: "Practical. Measurable. Production‑ready.",
-    services: [
-      {
-        title: "Scheduling & Operations",
-        body: "Automate appointment booking, reminders, intake, and internal ops workflows.",
-        bullets: ["Calendar", "Reminders", "Intake"],
-      },
-      {
-        title: "Lead intake & follow‑up",
-        body: "Capture, qualify, and follow up across channels — with human handoff.",
-        bullets: ["Qualification", "Routing", "Sequences"],
-      },
-      {
-        title: "Support & Knowledge",
-        body: "Answer FAQs and reduce repetitive support using your docs and policies.",
-        bullets: ["FAQs", "Knowledge base", "Consistency"],
-      },
-    ],
-    industryTitle: "Common use cases",
-    industries: [
-      {
-        title: "Clinics",
-        body: "Scheduling, reminders, and pre‑consultation intake (WhatsApp optional).",
-        bullets: ["Appointments", "Intake", "Reminders"],
-      },
-      {
-        title: "Real estate",
-        body: "Qualification + follow‑up, property info, and faster response times.",
-        bullets: ["Qualification", "Follow‑up", "Property info"],
-      },
-      {
-        title: "Travel agencies",
-        body: "Guided quoting and itinerary follow‑ups — without losing leads.",
-        bullets: ["Guided quote", "Follow‑up", "Upsells"],
-      },
-    ],
-    diagnosisTitle: "Not sure where AI fits?",
-    diagnosisBody:
-      "Request a quick diagnosis: we review your workflow, identify the best first automation, and outline scope and next steps.",
-    diagnosisCta: "Request diagnosis on WhatsApp",
-    processTitle: "How we work",
-    process: [
-      {
-        title: "1) Diagnose",
-        body: "We map your workflow and pick the highest‑ROI first step.",
-      },
-      {
-        title: "2) Build",
-        body: "We ship an MVP fast with clear success metrics.",
-      },
-      {
-        title: "3) Deploy & iterate",
-        body: "We integrate, monitor, and expand what works.",
-      },
-    ],
-    botTitle: "Ask MaxAI",
-    faqTitle: "FAQ",
-    faqs: [
-      {
-        q: "Can I request a quote via WhatsApp?",
-        a: "Yes — tell us your business type, goal, city, and urgency. We’ll reply with a recommendation and next steps.",
-      },
-      {
-        q: "Do you only work on WhatsApp automations?",
-        a: "No. We can build and integrate across WhatsApp, web, email, CRMs, and internal tools.",
-      },
-      {
-        q: "What if I’m not sure I need AI?",
-        a: "Request a diagnosis. We’ll identify opportunities and recommend the shortest path to ROI.",
-      },
-    ],
-  },
-  es: {
-    kicker: "Agencia de IA",
-    headline: "No solo usamos IA.",
-    headline2: "Diseñamos el futuro de tu negocio.",
-    sub: "Inteligencia que hace tu trabajo más humano — y tu operación más escalable.",
-    cta: "Pide tu cotización por WhatsApp",
-    ctaPrefill:
-      "Hola MaxAI — me gustaría una cotización.\n\nGiro: \nObjetivo (agenda/leads/seguimiento/soporte): \nCiudad: \nUrgencia: \n\nSi puedes, agrega: tu nombre en WhatsApp + mejor horario para responderte.",
-    secondary: "Agenda diagnóstico (20 min)",
-    trust: "Práctico. Medible. Listo para producción.",
-    services: [
-      {
-        title: "Agenda & operaciones",
-        body: "Automatiza citas, recordatorios, intake y flujos operativos internos.",
-        bullets: ["Calendario", "Recordatorios", "Intake"],
-      },
-      {
-        title: "Captación & seguimiento",
-        body: "Captura, califica y da seguimiento en varios canales — con handoff humano.",
-        bullets: ["Calificación", "Enrutamiento", "Secuencias"],
-      },
-      {
-        title: "Soporte & conocimiento",
-        body: "Responde FAQs y reduce soporte repetitivo usando tus docs y políticas.",
-        bullets: ["FAQs", "Base de conocimiento", "Consistencia"],
-      },
-    ],
-    industryTitle: "Casos de uso comunes",
-    industries: [
-      {
-        title: "Consultorios",
-        body: "Agenda, recordatorios e intake pre‑consulta (WhatsApp opcional).",
-        bullets: ["Citas", "Intake", "Recordatorios"],
-      },
-      {
-        title: "Bienes raíces",
-        body: "Calificación + seguimiento, fichas de propiedades y respuestas más rápidas.",
-        bullets: ["Calificación", "Seguimiento", "Info de propiedades"],
-      },
-      {
-        title: "Agencias de viajes",
-        body: "Cotización guiada y seguimiento de itinerarios — sin perder leads.",
-        bullets: ["Cotización guiada", "Seguimiento", "Upsells"],
-      },
-    ],
-    diagnosisTitle: "¿No sabes si tu negocio necesita IA?",
-    diagnosisBody:
-      "Pide un diagnóstico rápido: revisamos tu flujo, identificamos la mejor primera automatización y te damos alcance y siguientes pasos.",
-    diagnosisCta: "Pedir diagnóstico por WhatsApp",
-    processTitle: "Cómo trabajamos",
-    process: [
-      {
-        title: "1) Diagnóstico",
-        body: "Mapeamos tu flujo y definimos el primer paso con mayor ROI.",
-      },
-      {
-        title: "2) Construcción",
-        body: "Lanzamos un MVP rápido con métricas claras.",
-      },
-      {
-        title: "3) Despliegue e iteración",
-        body: "Integramos, monitoreamos y escalamos lo que funciona.",
-      },
-    ],
-    botTitle: "Pregúntale a MaxAI",
-    faqTitle: "FAQ",
-    faqs: [
-      {
-        q: "¿Puedo pedir cotización por WhatsApp?",
-        a: "Sí — dinos tu giro, objetivo, ciudad y urgencia. Te respondemos con recomendación y siguientes pasos.",
-      },
-      {
-        q: "¿Solo hacen automatizaciones en WhatsApp?",
-        a: "No. Podemos integrar WhatsApp, web, email, CRMs y herramientas internas.",
-      },
-      {
-        q: "¿Y si no sé por dónde empezar?",
-        a: "Pide un diagnóstico. Identificamos oportunidades y te proponemos el camino más corto a ROI.",
-      },
-    ],
-  },
-} as const;
+// ============================================================
+// ANIMATED TEXT - Letra por letra como Kyma
+// ============================================================
+function AnimatedText({
+  text,
+  className,
+  delay = 0,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+}) {
+  const letters = text.split("");
+  return (
+    <span className={className}>
+      {letters.map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: delay + i * 0.02, duration: 0.3 }}
+          style={{ display: "inline-block" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
 
-export default async function Page({
+// ============================================================
+// SECTION NUMBER - [01] style like Kyma
+// ============================================================
+function SectionNumber({ num }: { num: string }) {
+  return (
+    <motion.span
+      className="block text-xs font-bold tracking-widest text-cyan-400"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      [{num}]
+    </motion.span>
+  );
+}
+
+// ============================================================
+// STATS CARD
+// ============================================================
+function StatCard({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
+  return (
+    <motion.div
+      className="text-center"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+    >
+      <div className="text-4xl font-black text-white md:text-5xl">{value}</div>
+      <div className="mt-2 text-sm text-zinc-400">{label}</div>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// ROI CALCULATOR - Like Kyma
+// ============================================================
+function ROICalculator() {
+  const [employees, setEmployees] = useState(10);
+  const [hoursPerWeek, setHoursPerWeek] = useState(20);
+  const [hourlyCost, setHourlyCost] = useState(30);
+  const [includeBenefits, setIncludeBenefits] = useState(true);
+
+  const multiplier = includeBenefits ? 1.25 : 1;
+  const annualCost = employees * hoursPerWeek * hourlyCost * 52 * multiplier;
+  const automationSavings = Math.round(annualCost * 0.4);
+
+  return (
+    <motion.div
+      className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <div className="mb-6 text-lg font-semibold text-white">
+        ¿Cuánto te cuesta el trabajo manual?
+      </div>
+
+      <div className="space-y-6">
+        <div>
+          <div className="flex justify-between text-sm text-zinc-300">
+            <span>Número de empleados</span>
+            <span className="font-semibold text-cyan-400">{employees}</span>
+          </div>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value={employees}
+            onChange={(e) => setEmployees(Number(e.target.value))}
+            className="mt-2 w-full accent-cyan-400"
+          />
+        </div>
+
+        <div>
+          <div className="flex justify-between text-sm text-zinc-300">
+            <span>Horas por empleado por semana</span>
+            <span className="font-semibold text-cyan-400">{hoursPerWeek}/hrs</span>
+          </div>
+          <input
+            type="range"
+            min="1"
+            max="40"
+            value={hoursPerWeek}
+            onChange={(e) => setHoursPerWeek(Number(e.target.value))}
+            className="mt-2 w-full accent-cyan-400"
+          />
+        </div>
+
+        <div>
+          <div className="flex justify-between text-sm text-zinc-300">
+            <span>Costo promedio por hora</span>
+            <span className="font-semibold text-cyan-400">${hourlyCost}</span>
+          </div>
+          <input
+            type="range"
+            min="10"
+            max="100"
+            value={hourlyCost}
+            onChange={(e) => setHourlyCost(Number(e.target.value))}
+            className="mt-2 w-full accent-cyan-400"
+          />
+        </div>
+
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-zinc-300">¿Incluir beneficios?</span>
+          <button
+            onClick={() => setIncludeBenefits(!includeBenefits)}
+            className={`flex h-8 w-14 items-center rounded-full p-1 transition-colors ${
+              includeBenefits ? "bg-cyan-400" : "bg-zinc-600"
+            }`}
+          >
+            <motion.div
+              className="h-6 w-6 rounded-full bg-white"
+              animate={{ x: includeBenefits ? 24 : 0 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            />
+          </button>
+        </div>
+
+        <div className="mt-6 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-4 text-center">
+          <div className="text-sm text-zinc-300">Costo anual</div>
+          <div className="text-3xl font-black text-white">${annualCost.toLocaleString()}</div>
+          <div className="mt-2 text-sm text-cyan-400">
+            ¡Puedes ahorrar ${automationSavings.toLocaleString()}/año con automatización!
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-4 text-xs text-zinc-500">
+        *Esta calculadora muestra costos laborales directos.
+      </p>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// SERVICE CARD
+// ============================================================
+function ServiceCard({
+  num,
+  title,
+  description,
+  bullets,
+  delay = 0,
+}: {
+  num: string;
+  title: string;
+  description: string;
+  bullets: string[];
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-cyan-400/30 hover:bg-white/[0.05]"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+    >
+      <div className="mb-4 text-xs font-bold text-cyan-400">{num}</div>
+      <h3 className="text-xl font-bold text-white">{title}</h3>
+      <p className="mt-3 text-sm text-zinc-300">{description}</p>
+      <ul className="mt-4 flex flex-wrap gap-2">
+        {bullets.map((bullet) => (
+          <li
+            key={bullet}
+            className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs text-zinc-400"
+          >
+            {bullet}
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// PRICING CARD
+// ============================================================
+function PricingCard({
+  name,
+  price,
+  description,
+  features,
+  popular = false,
+  delay = 0,
+}: {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  popular?: boolean;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className={`relative rounded-2xl border p-6 transition-all ${
+        popular
+          ? "border-cyan-400 bg-gradient-to-b from-cyan-500/10 to-transparent"
+          : "border-white/10 bg-white/[0.02]"
+      }`}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+    >
+      {popular && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-cyan-400 px-3 py-1 text-xs font-bold text-black">
+          POPULAR
+        </div>
+      )}
+      <h3 className="text-xl font-bold text-white">{name}</h3>
+      <p className="mt-2 text-sm text-zinc-400">{description}</p>
+      <div className="mt-4 flex items-baseline gap-1">
+        <span className="text-4xl font-black text-white">{price}</span>
+        <span className="text-zinc-500">/mes</span>
+      </div>
+      <ul className="mt-6 space-y-3">
+        {features.map((feature) => (
+          <li key={feature} className="flex items-center gap-2 text-sm text-zinc-300">
+            <svg className="h-4 w-4 flex-shrink-0 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+      <div className="mt-6">
+        <WhatsAppCTA
+          label={popular ? "Empezar ahora" : "Contactar"}
+          prefill={`Hola MaxAI, me interesa el plan ${name}. ¿Podemos hablar?`}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// TESTIMONIAL CARD
+// ============================================================
+function TestimonialCard({
+  quote,
+  name,
+  role,
+  delay = 0,
+}: {
+  quote: string;
+  name: string;
+  role: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+    >
+      <p className="text-lg text-zinc-300">"{quote}"</p>
+      <div className="mt-4">
+        <div className="font-semibold text-white">{name}</div>
+        <div className="text-sm text-zinc-500">{role}</div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// TIMELINE STEP
+// ============================================================
+function TimelineStep({
+  week,
+  title,
+  description,
+  delay = 0,
+}: {
+  week: string;
+  title: string;
+  description: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className="text-center"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+    >
+      <div className="mb-2 text-xs font-bold uppercase tracking-widest text-cyan-400">
+        {week}
+      </div>
+      <h4 className="text-lg font-bold text-white">{title}</h4>
+      <p className="mt-2 text-sm text-zinc-400">{description}</p>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// MAIN PAGE
+// ============================================================
+export default function Page({
   params,
 }: {
   params: Promise<{ locale: Locale }>;
 }) {
-  const { locale } = await params;
-  const t = copy[locale];
-  // Headline rendering: keep it clean + spacious (agency vibe)
+  const { locale } = React.use(params);
+  const t = {
+    heroKicker: "AGENCIA DE AUTOMATIZACIÓN IA",
+    heroHeadline: "ESCALA TUS OPERACIONES",
+    heroHeadline2: "SIN CONTRATAR MÁS GENTE.",
+    heroSub: "Construimos sistemas de IA personalizados que manejan tu trabajo repetitivo, para que te enfoques en crecer, no en tareas manuales.",
+    heroCTA: "Agenda tu auditoría gratis",
+    trustedBy: "Empresas que confían en nosotros",
+    
+    services: [
+      { num: "01", title: "Agenda & Operaciones", description: "Automatiza citas, recordatorios, intake y flujos operativos.", bullets: ["Calendario", "Recordatorios", "Intake", "CRM"] },
+      { num: "02", title: "Captación & Seguimiento", description: "Captura, califica y da seguimiento en varios canales.", bullets: ["Calificación", "Enrutamiento", "Secuencias", "WhatsApp"] },
+      { num: "03", title: "Soporte & Conocimiento", description: "Responde FAQs y reduce soporte repetitivo.", bullets: ["Chatbot", "Base de conocimiento", "Escalación"] },
+      { num: "04", title: "Datos & Reportes", description: "Transforma datos brutos en insights automáticamente.", bullets: ["Dashboards", "Reportes auto", "Analítica"] },
+      { num: "05", title: "Contenido & Comunicación", description: "Genera y distribuye contenido a escala.", bullets: ["Email", "Redes sociales", "Plantillas"] },
+      { num: "06", title: "Soluciones Custom", description: "Sistemas construidos a la medida.", bullets: ["Integraciones", "Apps custom", "API"] },
+    ],
+    
+    timeline: [
+      { week: "Semana 1", title: "Auditoría", description: "Mapeamos flujos y calculamos ROI." },
+      { week: "Semanas 2-3", title: "Diseño", description: "Arquitectura personalizada." },
+      { week: "Semanas 4-5", title: "Construcción", description: "Desarrollo e integración." },
+      { week: "Semana 6", title: "Despliegue", description: "Lanzamiento y entrenamiento." },
+    ],
+    
+    postLaunchItems: [
+      "Monitoreo continuo",
+      "Optimización trimestral",
+      "Soporte prioritario",
+    ],
+    
+    plans: [
+      { name: "Quick Win", price: "$499", description: "Para equipos pequeños.", features: ["1 flujo", "3 integraciones", "2 semanas", "Email support"], popular: false },
+      { name: "Scale", price: "$2,500", description: "Para empresas medianas.", features: ["3 flujos", "Integraciones ilimitadas", "Analítica", "Soporte prioritario"], popular: true },
+      { name: "Full Stack", price: "$6,750", description: "Para grandes organizaciones.", features: ["Flujos ilimitados", "Enterprise", "SLA", "Estratega dedicado"], popular: false },
+    ],
+    
+    testimonials: [
+      { quote: "Nuestro equipo de ventas pasaba medio día en admin. Ahora cierran tratos. La automatización maneja todo.", name: "Ryan Martinez", role: "VP de Ventas" },
+      { quote: "Cuadruplicamos clientes sin contratar. La automatización transformó nuestro negocio.", name: "Rebecca Martinez", role: "CEO" },
+      { quote: "Pasamos de odiar el cierre de mes a tener finanzas listas en menos de una semana.", name: "Marcus Thompson", role: "CFO" },
+    ],
+  };
 
   return (
     <SiteShell locale={locale}>
-      {/* Hero — minimal, full-bleed feel (RoboLabs-inspired) */}
-      <section className="relative mt-10 overflow-hidden rounded-[2.5rem] bg-transparent">
-        <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.02]">
-          <HeroBackdrop />
-          <div className="relative px-6 py-14 md:px-12 md:py-20">
-            <div className="relative z-10 grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
-            <div className="hidden" />
+      {/* HERO */}
+      <section className="relative min-h-screen overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900" />
+        
+        <div className="relative px-6 py-20 md:px-12 md:py-32">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center"
+          >
+            <span className="inline-block rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-bold tracking-[0.2em] text-cyan-400">
+              {t.heroKicker}
+            </span>
+          </motion.div>
 
-            <div className="mx-auto w-full max-w-5xl text-center">
-              <Reveal>
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-100/70">
-                  {t.kicker}
-                </div>
-              </Reveal>
+          <div className="mx-auto mt-12 max-w-5xl text-center">
+            <h1 className="text-5xl font-black leading-[0.95] tracking-tight text-white md:text-7xl lg:text-8xl">
+              <AnimatedText text={t.heroHeadline} delay={0.1} />
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                <AnimatedText text={t.heroHeadline2} delay={0.5} />
+              </span>
+            </h1>
+          </div>
 
-              <div className="mt-6">
-                <Reveal delayMs={80}>
-                  <h1 className="text-5xl font-black leading-[0.98] tracking-[-0.03em] text-white md:text-7xl">
-                    {t.headline}
-                    <br />
-                    {t.headline2}
-                  </h1>
-                </Reveal>
+          <motion.p
+            className="mx-auto mt-8 max-w-2xl text-center text-lg text-zinc-300 md:text-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            {t.heroSub}
+          </motion.p>
 
-                <Reveal delayMs={160}>
-                  <p className="mx-auto mt-6 max-w-3xl text-lg text-zinc-50/85 md:text-xl">
-                    {t.sub}
-                  </p>
-                </Reveal>
-              </div>
+          <motion.div
+            className="mt-10 flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5 }}
+          >
+            <CalendlyCTA label={t.heroCTA} />
+          </motion.div>
 
-              <Reveal delayMs={220}>
-                <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                  <WhatsAppCTA label={t.cta} prefill={t.ctaPrefill} />
-                  <CalendlyCTA label={t.secondary} />
-                </div>
-              </Reveal>
+          <motion.p
+            className="mt-16 text-center text-sm text-zinc-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2 }}
+          >
+            {t.trustedBy}
+          </motion.p>
+        </div>
+      </section>
 
-              <Reveal delayMs={280}>
-                <div className="mt-10 flex flex-wrap justify-center gap-2 text-xs text-zinc-100/70">
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                    {locale === "es" ? "MVP rápido" : "Fast MVP"}
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                    {locale === "es" ? "Producción" : "Production"}
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                    {locale === "es" ? "Entrenamiento" : "Enablement"}
-                  </span>
-                </div>
-              </Reveal>
-            </div>
-            </div>
+      {/* STATS */}
+      <section className="px-6 py-16 md:px-12">
+        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
+          <StatCard value="50+" label="Empresas" delay={0} />
+          <StatCard value="99%" label="Satisfacción" delay={0.1} />
+          <StatCard value="4.9" label="Rating" delay={0.2} />
+          <StatCard value="6 sem" label="Despliegue" delay={0.3} />
+        </div>
+      </section>
+
+      {/* ROI CALCULATOR */}
+      <section className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <SectionNumber num="01" />
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-4xl">
+            ¿CUÁNTO TE CUESTA EL TRABAJO MANUAL?
+          </h2>
+          <ROICalculator />
+          <div className="mt-8 text-center">
+            <CalendlyCTA label="Ver cómo podemos ayudar" />
           </div>
         </div>
       </section>
 
-      <section id="what" className="mt-28">
-        <Reveal>
-          <div className="flex items-end justify-between gap-6">
-            <h2 className="text-3xl font-black tracking-[-0.02em]">
-              {locale === "es" ? "Lo que construimos" : "What we build"}
-            </h2>
-            <div className="hidden text-sm text-zinc-300 md:block">
-              {locale === "es"
-                ? "Agentes, automatizaciones e integraciones — sin humo."
-                : "Agents, automations, and integrations — no fluff."}
-            </div>
+      {/* SERVICES */}
+      <section className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-6xl">
+          <SectionNumber num="02" />
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
+            LOS SERVICIOS QUE ELIMINAN EL TRABAJO MANUAL.
+          </h2>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {t.services.map((service, i) => (
+              <ServiceCard
+                key={service.num}
+                num={service.num}
+                title={service.title}
+                description={service.description}
+                bullets={service.bullets}
+                delay={i * 0.1}
+              />
+            ))}
           </div>
-        </Reveal>
-
-        <div className="mt-10 grid gap-10 md:grid-cols-3">
-          {t.services.map((s) => (
-            <div key={s.title} className="border-t border-white/10 pt-6">
-              <div className="text-lg font-semibold">{s.title}</div>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-200/90">
-                {s.body}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2 text-xs text-zinc-200/70">
-                {s.bullets.map((b) => (
-                  <span
-                    key={b}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1"
-                  >
-                    {b}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
-      <section id="industry" className="mt-24">
-        <h2 className="text-2xl font-bold tracking-tight">{t.industryTitle}</h2>
-        <div className="mt-10 grid gap-10 md:grid-cols-3">
-          {t.industries.map((s) => (
-            <div key={s.title} className="border-t border-white/10 pt-6">
-              <div className="text-lg font-semibold">{s.title}</div>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-200/90">
-                {s.body}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2 text-xs text-zinc-200/70">
-                {s.bullets.map((b) => (
-                  <span
-                    key={b}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1"
-                  >
-                    {b}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+      {/* HOW IT WORKS */}
+      <section className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-6xl">
+          <SectionNumber num="03" />
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
+            DESPLIEGUE RÁPIDO.
+          </h2>
+          <p className="mt-4 text-lg text-zinc-400">De la primera llamada a automatización en solo 6 semanas.</p>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-4">
+            {t.timeline.map((step, i) => (
+              <TimelineStep
+                key={step.week}
+                week={step.week}
+                title={step.title}
+                description={step.description}
+                delay={i * 0.15}
+              />
+            ))}
+          </div>
+
+          <div className="mt-16 rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+            <h3 className="text-xl font-bold text-white">¿QUÉ PASA DESPUÉS DEL LANZAMIENTO?</h3>
+            <p className="mt-2 text-zinc-400">No desaparecemos. Tu automatización mejora con el tiempo.</p>
+            <ul className="mt-6 grid gap-4 md:grid-cols-3">
+              {t.postLaunchItems.map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-sm text-zinc-300">
+                  <svg className="h-5 w-5 flex-shrink-0 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section id="process" className="mt-24">
-        <h2 className="text-2xl font-bold tracking-tight">{t.processTitle}</h2>
-        <div className="mt-10 grid gap-10 md:grid-cols-3">
-          {t.process.map((p) => (
-            <div key={p.title} className="border-t border-white/10 pt-6">
-              <div className="text-lg font-semibold">{p.title}</div>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-200/90">
-                {p.body}
-              </p>
-            </div>
-          ))}
+      {/* PRICING */}
+      <section className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-6xl">
+          <SectionNumber num="04" />
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
+            PLANES FLEXIBLES PARA CUALQUIER ESCALA.
+          </h2>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {t.plans.map((plan, i) => (
+              <PricingCard
+                key={plan.name}
+                name={plan.name}
+                price={plan.price}
+                description={plan.description}
+                features={plan.features}
+                popular={plan.popular}
+                delay={i * 0.15}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
-      <section id="diagnosis" className="mt-20 rounded-2xl border border-white/10 bg-white/[0.04] p-8">
-        <div className="text-lg font-semibold">{t.diagnosisTitle}</div>
-        <p className="mt-2 text-sm text-zinc-200/90">{t.diagnosisBody}</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <CalendlyCTA
-            label={locale === "es" ? "Agendar en Calendly" : "Book on Calendly"}
-          />
-          <WhatsAppCTA label={t.diagnosisCta} prefill={t.ctaPrefill} />
+      {/* TESTIMONIALS */}
+      <section className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-6xl">
+          <SectionNumber num="05" />
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
+            NO TOMES NUESTRA PALABRA.
+          </h2>
+          <p className="mt-4 text-lg text-zinc-400">Empresas que implementaron automatización y no miraron atrás.</p>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {t.testimonials.map((testimonial, i) => (
+              <TestimonialCard
+                key={testimonial.name}
+                quote={testimonial.quote}
+                name={testimonial.name}
+                role={testimonial.role}
+                delay={i * 0.15}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
-      <section id="faq" className="mt-20">
-        <h2 className="text-xl font-semibold">{t.faqTitle}</h2>
-        <div className="mt-6 grid gap-4">
-          {t.faqs.map((f) => (
-            <div
-              key={f.q}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
-            >
-              <div className="font-semibold">{f.q}</div>
-              <p className="mt-2 text-sm text-zinc-200/90">{f.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-20 rounded-2xl border border-white/10 bg-white/[0.04] p-8">
-        <div className="text-lg font-semibold">
-          {locale === "es" ? "¿Listo para cotizar?" : "Ready to request a quote?"}
-        </div>
-        <p className="mt-2 text-sm text-zinc-200/90">
-          {locale === "es"
-            ? "Cuéntanos tu caso y te damos recomendación y siguientes pasos."
-            : "Tell us your case and we’ll reply with a recommendation and next steps."}
-        </p>
-        <div className="mt-5">
-          <WhatsAppCTA
-            label={locale === "es" ? "Abrir WhatsApp" : "Open WhatsApp"}
-            prefill={t.ctaPrefill}
-          />
+      {/* CTA FINAL */}
+      <section className="px-6 py-24 md:px-12">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionNumber num="06" />
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
+            ¿LISTO PARA AUTOMATIZAR?
+          </h2>
+          <p className="mt-4 text-lg text-zinc-400">
+            Agenda una auditoría gratuita de 30 minutos.
+          </p>
+          <div className="mt-10">
+            <CalendlyCTA label="AGENDAR AUDITORÍA" />
+          </div>
         </div>
       </section>
 
