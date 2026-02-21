@@ -8,64 +8,7 @@ import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
 import type { Locale } from "@/lib/i18n";
-
-// ============================================================
-// MATRIX RAIN EFFECT
-// ============================================================
-function MatrixRain() {
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
-
-  React.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-    
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]|;:,.<>?';
-    const charArray = chars.split('');
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
-    
-    const draw = () => {
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.02)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = `${fontSize}px monospace`;
-      
-      for (let i = 0; i < drops.length; i++) {
-        const char = charArray[Math.floor(Math.random() * charArray.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-        
-        ctx.fillStyle = Math.random() > 0.95 ? 'rgba(255,255,255,0.3)' : 'rgba(0,255,136,0.15)';
-        ctx.fillText(char, x, y);
-        
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    };
-    
-    const interval = setInterval(draw, 33);
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
-  
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />;
-}
-
-// ============================================================
+import { ShaderBackground } from "@/components/ShaderBackground";
 // ANIMATED TEXT - Letra por letra
 // ============================================================
 function AnimatedText({
@@ -450,26 +393,14 @@ export default function Page({
   return (
     <SiteShell locale={locale}>
       {/* ============================================================ */}
-      {/* HERO - Con Matrix Rain y aurora */}
+      {/* HERO - Con Shader Effect */}
       {/* ============================================================ */}
       <section className="relative min-h-screen overflow-hidden">
-        {/* Fondo */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[#0a0a0f]" />
-          
-          {/* Matrix Rain */}
-          <MatrixRain />
-          
-          {/* Aurora effect */}
-          <div className="absolute inset-0 opacity-40" style={{
-            background: 'radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(0, 255, 136, 0.2) 0%, transparent 40%)'
-          }} />
-          
-          {/* Glow central */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-50" style={{
-            background: 'radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, transparent 70%)'
-          }} />
-        </div>
+        {/* Shader Background */}
+        <ShaderBackground />
+        
+        {/* Overlay oscuro para legibilidad */}
+        <div className="absolute inset-0 z-10 bg-black/60" />
 
         {/* Overlay */}
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0a0a0f]/70 via-transparent to-[#0a0a0f]" />
