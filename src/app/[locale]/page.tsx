@@ -396,9 +396,9 @@ export default function Page({
       {/* HERO - Compacto con Spline de fondo */}
       {/* ============================================================ */}
       <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
-        {/* Spline como fondo - iframe para evitar problemas de tipos */}
+        {/* Spline como fondo - iframe */}
         <iframe 
-          src="https://my.spline.design/cloneretrowaveplanet-01a1b47e22cc4f45b0641802481013b3b/#" 
+          src="https://prod.spline.design/HrmUNpS9zOCmtm8I/scene.splinecode"
           className="absolute inset-0 w-full h-full"
           frameBorder="0"
           allow="autoplay"
