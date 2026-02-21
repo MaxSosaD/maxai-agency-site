@@ -439,7 +439,7 @@ export default function Page({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 max-w-xl text-center text-lg text-[#94a3b8] md:text-xl"
+            className="mt-8 max-w-xl text-center text-lg text-white/90 md:text-xl"
           >
             Construimos sistemas de IA que manejan tu trabajo repetitivo. Enfócate en crecer, no en tareas manuales.
           </motion.p>
@@ -451,7 +451,10 @@ export default function Page({
             transition={{ duration: 0.6, delay: 0.7 }}
             className="mt-10 flex flex-wrap justify-center gap-4"
           >
-            <CalendlyCTA label="Agenda tu auditoría gratis" />
+            <button className="inline-flex items-center gap-2 rounded-xl bg-[#00ff88] px-8 py-4 text-lg font-semibold text-[#0a0a0f] transition-all hover:bg-[#00cc6a] hover:shadow-[0_10px_30px_rgba(0,255,136,0.3)]">
+              Agenda tu auditoría gratis
+              <ArrowRight size={20} />
+            </button>
           </motion.div>
 
           {/* Trust indicators */}
