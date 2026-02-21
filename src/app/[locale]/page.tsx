@@ -473,18 +473,20 @@ export default function Page({
             transition={{ duration: 0.6, delay: 1 }}
             className="mt-10 text-center text-xs text-zinc-500"
           >
-            Empresas que confían en nosotros
+            {/* Trust indicators - eliminado */}
           </motion.p>
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="px-6 py-12 md:px-12 -mt-20 relative z-30">
-        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
-          <StatCard value="50+" label="Empresas" delay={0} />
-          <StatCard value="99%" label="Satisfacción" delay={0.1} />
-          <StatCard value="4.9" label="Rating" delay={0.2} />
-          <StatCard value="6 sem" label="Despliegue" delay={0.3} />
+      {/* STATS - en recuadro */}
+      <section className="px-6 py-0 md:px-12 -mt-16 relative z-30">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm p-6 md:p-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <StatCard value="50+" label="Empresas" delay={0} />
+            <StatCard value="99%" label="Satisfacción" delay={0.1} />
+            <StatCard value="4.9" label="Rating" delay={0.2} />
+            <StatCard value="6 sem" label="Despliegue" delay={0.3} />
+          </div>
         </div>
       </section>
 
