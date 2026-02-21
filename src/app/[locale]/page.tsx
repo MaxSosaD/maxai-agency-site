@@ -393,20 +393,29 @@ export default function Page({
   return (
     <SiteShell locale={locale}>
       {/* ============================================================ */}
-      {/* HERO - Compacto con Spline de fondo */}
+      {/* HERO - Fondo limpio profesional */}
       {/* ============================================================ */}
       <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
-        {/* Spline como fondo - iframe */}
-        <iframe 
-          src="https://prod.spline.design/HrmUNpS9zOCmtm8I/scene.splinecode"
-          className="absolute inset-0 w-full h-full"
-          frameBorder="0"
-          allow="autoplay"
-          title="Spline 3D"
-        />
-        
-        {/* Overlay gradiente para legibilidad */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        {/* Fondo gradiente limpio */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black" />
+          
+          {/* Grid sutil */}
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+              backgroundSize: '60px 60px'
+            }}
+          />
+          
+          {/* Glow effects */}
+          <div className="absolute -left-32 top-1/4 h-64 w-64 rounded-full bg-cyan-500/10 blur-[100px]" />
+          <div className="absolute -right-32 bottom-1/4 h-64 w-64 rounded-full bg-blue-500/10 blur-[100px]" />
+        </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-transparent to-black/70" />
 
         {/* Contenido del hero - más compacto */}
         <div className="relative z-20 flex h-full flex-col items-center justify-center px-6">
