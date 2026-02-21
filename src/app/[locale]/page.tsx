@@ -393,90 +393,84 @@ export default function Page({
   return (
     <SiteShell locale={locale}>
       {/* ============================================================ */}
-      {/* HERO - Fondo animado con partículas */}
+      {/* HERO - Compacto con Spline de fondo */}
       {/* ============================================================ */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* Fondo animado */}
-        <div className="absolute inset-0 z-0">
-          {/* Gradiente base */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900" />
-          
-          {/* Grid pattern */}
-          <div 
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-              backgroundSize: '40px 40px'
-            }}
-          />
-          
-          {/* Glowing orbs */}
-          <div className="absolute left-1/4 top-1/4 h-96 w-96 animate-pulse rounded-full bg-cyan-500/20 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 animate-pulse rounded-full bg-blue-500/20 blur-3xl" style={{ animationDelay: '1s' }} />
-          <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-purple-500/10 blur-3xl" style={{ animationDelay: '2s' }} />
-        </div>
+      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+        {/* Spline como fondo - iframe para evitar problemas de tipos */}
+        <iframe 
+          src="https://my.spline.design/cloneretrowaveplanet-01a1b47e22cc4f45b0641802481013b3b/#" 
+          className="absolute inset-0 w-full h-full"
+          frameBorder="0"
+          allow="autoplay"
+          title="Spline 3D"
+        />
         
-        {/* Overlay para legibilidad */}
-        <div className="absolute inset-0 z-10 bg-black/50" />
+        {/* Overlay gradiente para legibilidad */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
 
-        {/* Contenido del hero */}
-        <div className="relative z-20 flex min-h-screen flex-col items-center justify-center px-6 py-20">
+        {/* Contenido del hero - más compacto */}
+        <div className="relative z-20 flex h-full flex-col items-center justify-center px-6">
           {/* Kicker */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <span className="inline-block rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-bold tracking-[0.2em] text-cyan-400">
-              {t.heroKicker}
+            <span className="inline-block rounded-full border border-cyan-400/40 bg-cyan-400/10 px-5 py-2 text-xs font-bold tracking-[0.25em] text-cyan-400">
+              AGENCIA DE AUTOMATIZACIÓN IA
             </span>
           </motion.div>
 
-          {/* Headline */}
-          <div className="mx-auto mt-12 max-w-5xl text-center">
-            <h1 className="text-5xl font-black leading-[0.95] tracking-tight text-white md:text-7xl lg:text-8xl">
-              <AnimatedText text={t.heroHeadline} delay={0.1} />
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                <AnimatedText text={t.heroHeadline2} delay={0.5} />
+          {/* Headline - líneas más cortas y espacio reducido */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-8 text-center"
+          >
+            <h1 className="text-4xl font-black leading-[1.1] tracking-tight text-white md:text-6xl lg:text-7xl">
+              <span className="block">ESCALA TUS OPERACIONES</span>
+              <span className="mt-2 block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                SIN CONTRATAR MÁS GENTE
               </span>
             </h1>
-          </div>
+          </motion.div>
 
-          {/* Subheadline */}
+          {/* Subheadline - más corto */}
           <motion.p
-            className="mx-auto mt-8 max-w-2xl text-center text-lg text-zinc-300 md:text-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-6 max-w-xl text-center text-base text-zinc-300 md:text-lg"
           >
-            {t.heroSub}
+            Construimos sistemas de IA que manejan tu trabajo repetitivo. Enfócate en crecer, no en tareas manuales.
           </motion.p>
 
           {/* CTA */}
           <motion.div
-            className="mt-10 flex flex-wrap justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-8 flex flex-wrap justify-center gap-4"
           >
-            <CalendlyCTA label={t.heroCTA} />
+            <CalendlyCTA label="Agenda tu auditoría gratis" />
           </motion.div>
 
-          {/* Trust */}
+          {/* Trust indicators */}
           <motion.p
-            className="mt-16 text-center text-sm text-zinc-500"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            className="mt-10 text-center text-xs text-zinc-500"
           >
-            {t.trustedBy}
+            Empresas que confían en nosotros
           </motion.p>
         </div>
       </section>
 
       {/* STATS */}
-      <section className="px-6 py-16 md:px-12">
+      <section className="px-6 py-12 md:px-12 -mt-20 relative z-30">
         <div className="mx-auto grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
           <StatCard value="50+" label="Empresas" delay={0} />
           <StatCard value="99%" label="Satisfacción" delay={0.1} />
