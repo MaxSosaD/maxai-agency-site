@@ -1,16 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import * as React from "react";
-import { FloatingChat } from "@/components/FloatingChat";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
 import type { Locale } from "@/lib/i18n";
 
 // ============================================================
-// ANIMATED TEXT - Letra por letra como Kyma
+// ANIMATED TEXT - Letra por letra
 // ============================================================
 function AnimatedText({
   text,
@@ -30,7 +29,7 @@ function AnimatedText({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: delay + i * 0.02, duration: 0.3 }}
+          transition={{ delay: delay + i * 0.015, duration: 0.3 }}
           style={{ display: "inline-block" }}
         >
           {char === " " ? "\u00A0" : char}
@@ -41,7 +40,7 @@ function AnimatedText({
 }
 
 // ============================================================
-// SECTION NUMBER - [01] style like Kyma
+// SECTION NUMBER - [01] style
 // ============================================================
 function SectionNumber({ num }: { num: string }) {
   return (
@@ -76,7 +75,7 @@ function StatCard({ value, label, delay = 0 }: { value: string; label: string; d
 }
 
 // ============================================================
-// ROI CALCULATOR - Like Kyma
+// ROI CALCULATOR
 // ============================================================
 function ROICalculator() {
   const [employees, setEmployees] = useState(10);
@@ -219,18 +218,16 @@ function ServiceCard({
 }
 
 // ============================================================
-// PRICING CARD
+// PRICING CARD - Sin precios fijos, todo personalizado
 // ============================================================
 function PricingCard({
   name,
-  price,
   description,
   features,
   popular = false,
   delay = 0,
 }: {
   name: string;
-  price: string;
   description: string;
   features: string[];
   popular?: boolean;
@@ -250,14 +247,13 @@ function PricingCard({
     >
       {popular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-cyan-400 px-3 py-1 text-xs font-bold text-black">
-          POPULAR
+          MÁS POPULAR
         </div>
       )}
       <h3 className="text-xl font-bold text-white">{name}</h3>
       <p className="mt-2 text-sm text-zinc-400">{description}</p>
-      <div className="mt-4 flex items-baseline gap-1">
-        <span className="text-4xl font-black text-white">{price}</span>
-        <span className="text-zinc-500">/mes</span>
+      <div className="mt-4">
+        <span className="text-3xl font-black text-white">Contáctanos</span>
       </div>
       <ul className="mt-6 space-y-3">
         {features.map((feature) => (
@@ -271,7 +267,7 @@ function PricingCard({
       </ul>
       <div className="mt-6">
         <WhatsAppCTA
-          label={popular ? "Empezar ahora" : "Contactar"}
+          label="Pedir cotización"
           prefill={`Hola MaxAI, me interesa el plan ${name}. ¿Podemos hablar?`}
         />
       </div>
@@ -350,6 +346,7 @@ export default function Page({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = React.use(params);
+
   const t = {
     heroKicker: "AGENCIA DE AUTOMATIZACIÓN IA",
     heroHeadline: "ESCALA TUS OPERACIONES",
@@ -381,9 +378,9 @@ export default function Page({
     ],
     
     plans: [
-      { name: "Quick Win", price: "$499", description: "Para equipos pequeños.", features: ["1 flujo", "3 integraciones", "2 semanas", "Email support"], popular: false },
-      { name: "Scale", price: "$2,500", description: "Para empresas medianas.", features: ["3 flujos", "Integraciones ilimitadas", "Analítica", "Soporte prioritario"], popular: true },
-      { name: "Full Stack", price: "$6,750", description: "Para grandes organizaciones.", features: ["Flujos ilimitados", "Enterprise", "SLA", "Estratega dedicado"], popular: false },
+      { name: "Quick Win", description: "Para automatizar un proceso específico de alto impacto.", features: ["1 flujo de automatización", "Hasta 3 integraciones", "Implementación en 2 semanas", "Soporte por email"] },
+      { name: "Scale", description: "Para empresas listas para automatizar múltiples procesos.", features: ["Hasta 3 flujos de automatización", "Integraciones ilimitadas", "Analítica avanzada", "Soporte prioritario", "Revisiones estratégicas"], popular: true },
+      { name: "Enterprise", description: "Estrategia integral para grandes organizaciones.", features: ["Automatizaciones ilimitadas", "Integraciones enterprise", "Onboarding white-glove", "Sesiones mensuales", "SLA garantizado", "Estratega dedicado"] },
     ],
     
     testimonials: [
@@ -395,11 +392,36 @@ export default function Page({
 
   return (
     <SiteShell locale={locale}>
-      {/* HERO */}
+      {/* ============================================================ */}
+      {/* HERO - Fondo animado con partículas */}
+      {/* ============================================================ */}
       <section className="relative min-h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900" />
+        {/* Fondo animado */}
+        <div className="absolute inset-0 z-0">
+          {/* Gradiente base */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900" />
+          
+          {/* Grid pattern */}
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          
+          {/* Glowing orbs */}
+          <div className="absolute left-1/4 top-1/4 h-96 w-96 animate-pulse rounded-full bg-cyan-500/20 blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 animate-pulse rounded-full bg-blue-500/20 blur-3xl" style={{ animationDelay: '1s' }} />
+          <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-purple-500/10 blur-3xl" style={{ animationDelay: '2s' }} />
+        </div>
         
-        <div className="relative px-6 py-20 md:px-12 md:py-32">
+        {/* Overlay para legibilidad */}
+        <div className="absolute inset-0 z-10 bg-black/50" />
+
+        {/* Contenido del hero */}
+        <div className="relative z-20 flex min-h-screen flex-col items-center justify-center px-6 py-20">
+          {/* Kicker */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -410,6 +432,7 @@ export default function Page({
             </span>
           </motion.div>
 
+          {/* Headline */}
           <div className="mx-auto mt-12 max-w-5xl text-center">
             <h1 className="text-5xl font-black leading-[0.95] tracking-tight text-white md:text-7xl lg:text-8xl">
               <AnimatedText text={t.heroHeadline} delay={0.1} />
@@ -420,6 +443,7 @@ export default function Page({
             </h1>
           </div>
 
+          {/* Subheadline */}
           <motion.p
             className="mx-auto mt-8 max-w-2xl text-center text-lg text-zinc-300 md:text-xl"
             initial={{ opacity: 0, y: 20 }}
@@ -429,6 +453,7 @@ export default function Page({
             {t.heroSub}
           </motion.p>
 
+          {/* CTA */}
           <motion.div
             className="mt-10 flex flex-wrap justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -438,6 +463,7 @@ export default function Page({
             <CalendlyCTA label={t.heroCTA} />
           </motion.div>
 
+          {/* Trust */}
           <motion.p
             className="mt-16 text-center text-sm text-zinc-500"
             initial={{ opacity: 0 }}
@@ -460,7 +486,7 @@ export default function Page({
       </section>
 
       {/* ROI CALCULATOR */}
-      <section className="px-6 py-24 md:px-12">
+      <section className="px-6 py-24 md:px-12" id="calculadora">
         <div className="mx-auto max-w-4xl">
           <SectionNumber num="01" />
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-4xl">
@@ -474,7 +500,7 @@ export default function Page({
       </section>
 
       {/* SERVICES */}
-      <section className="px-6 py-24 md:px-12">
+      <section className="px-6 py-24 md:px-12" id="servicios">
         <div className="mx-auto max-w-6xl">
           <SectionNumber num="02" />
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
@@ -497,7 +523,7 @@ export default function Page({
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="px-6 py-24 md:px-12">
+      <section className="px-6 py-24 md:px-12" id="proceso">
         <div className="mx-auto max-w-6xl">
           <SectionNumber num="03" />
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
@@ -535,19 +561,19 @@ export default function Page({
       </section>
 
       {/* PRICING */}
-      <section className="px-6 py-24 md:px-12">
+      <section className="px-6 py-24 md:px-12" id="precios">
         <div className="mx-auto max-w-6xl">
           <SectionNumber num="04" />
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
             PLANES FLEXIBLES PARA CUALQUIER ESCALA.
           </h2>
+          <p className="mt-4 text-zinc-400">Cada negocio es único. Contáctanos y te armamos un plan a tu medida.</p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {t.plans.map((plan, i) => (
               <PricingCard
                 key={plan.name}
                 name={plan.name}
-                price={plan.price}
                 description={plan.description}
                 features={plan.features}
                 popular={plan.popular}
@@ -582,7 +608,7 @@ export default function Page({
       </section>
 
       {/* CTA FINAL */}
-      <section className="px-6 py-24 md:px-12">
+      <section className="px-6 py-24 md:px-12" id="contacto">
         <div className="mx-auto max-w-3xl text-center">
           <SectionNumber num="06" />
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
@@ -596,8 +622,6 @@ export default function Page({
           </div>
         </div>
       </section>
-
-      <FloatingChat locale={locale} />
     </SiteShell>
   );
 }

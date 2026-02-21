@@ -46,6 +46,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const t = {
     services: locale === "es" ? "Servicios" : "Services",
     process: locale === "es" ? "Proceso" : "Process",
+    pricing: locale === "es" ? "Precios" : "Pricing",
+    contact: locale === "es" ? "Contacto" : "Contact",
     lang: locale === "es" ? "EN" : "ES",
     langHref: locale === "es" ? "/en" : "/es",
   };
@@ -58,15 +60,11 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
             : "hover:text-white"
         }
-        href="#what"
+        href="#servicios"
         onClick={() => setOpen(false)}
       >
         {t.services}
       </a>
-
-      <div className={mobile ? "px-4" : ""}>
-        <ProductsMenu locale={locale} />
-      </div>
 
       <a
         className={
@@ -74,7 +72,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
             : "hover:text-white"
         }
-        href="#process"
+        href="#proceso"
         onClick={() => setOpen(false)}
       >
         {t.process}
@@ -86,10 +84,22 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
             : "hover:text-white"
         }
-        href="#faq"
+        href="#precios"
         onClick={() => setOpen(false)}
       >
-        FAQ
+        {t.pricing}
+      </a>
+
+      <a
+        className={
+          mobile
+            ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
+            : "hover:text-white"
+        }
+        href="#contacto"
+        onClick={() => setOpen(false)}
+      >
+        {t.contact}
       </a>
 
       <Link
