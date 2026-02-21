@@ -424,41 +424,41 @@ export default function Page({
         {/* Overlay */}
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0a0a0f]/70 via-transparent to-[#0a0a0f]" />
 
-        {/* Contenido del hero - más compacto */}
-        <div className="relative z-20 flex h-full flex-col items-center justify-center px-6">
-          {/* Kicker */}
+        {/* Contenido del hero */}
+        <div className="relative z-20 flex min-h-[calc(100vh-72px)] flex-col items-center justify-center px-6 pt-20">
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <span className="inline-block rounded-full border border-#00ff88/40 bg-#00ff88/10 px-5 py-2 text-xs font-bold tracking-[0.25em] text-#00ff88">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#00ff88]/30 bg-[#00ff88]/10 px-5 py-2 text-xs font-bold tracking-[0.2em] text-[#00ff88]">
               AGENCIA DE AUTOMATIZACIÓN IA
             </span>
           </motion.div>
 
-          {/* Headline - líneas más cortas y espacio reducido */}
+          {/* Headline */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-8 text-center"
+            className="mt-12 text-center"
           >
-            <h1 className="text-4xl font-black leading-[1.1] tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl lg:text-8xl">
               <span className="block">ESCALA TUS OPERACIONES</span>
-              <span className="mt-2 block bg-gradient-to-r from-#00ff88 to-#7c3aed bg-clip-text text-transparent">
+              <span className="mt-4 block bg-gradient-to-r from-[#00ff88] to-[#7c3aed] bg-clip-text text-transparent">
                 SIN CONTRATAR MÁS GENTE
               </span>
             </h1>
           </motion.div>
 
-          {/* Subheadline - más corto */}
+          {/* Subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-6 max-w-xl text-center text-base text-#94a3b8 md:text-lg"
+            className="mt-8 max-w-xl text-center text-lg text-[#94a3b8] md:text-xl"
           >
             Construimos sistemas de IA que manejan tu trabajo repetitivo. Enfócate en crecer, no en tareas manuales.
           </motion.p>
@@ -468,7 +468,7 @@ export default function Page({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-8 flex flex-wrap justify-center gap-4"
+            className="mt-10 flex flex-wrap justify-center gap-4"
           >
             <CalendlyCTA label="Agenda tu auditoría gratis" />
           </motion.div>

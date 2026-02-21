@@ -10,33 +10,43 @@ export function SiteShell({
 }) {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-[#0a0a0f] text-white">
-      {/* Fondo simple como maxai-agents */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[#0a0a0f]" />
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
-          }}
-        />
-      </div>
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
-        <SiteHeader locale={locale} />
+      {/* Navbar estilo maxai-agents */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#2a2a3a] bg-[#0a0a0f]/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-6">
+          <SiteHeader locale={locale} />
+        </div>
+      </header>
 
+      {/* Contenido principal */}
+      <main className="pt-[72px]">
         {children}
+      </main>
 
-        <footer className="mt-20 border-t border-[#2a2a3a] pt-8 text-xs text-[#94a3b8]">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div>© {new Date().getFullYear()} MaxAI. All rights reserved.</div>
-            <div className="text-[#64748b]">
-              {locale === "es"
-                ? "Pagos crypto: listo para fase 2."
-                : "Crypto payments: ready for phase 2."}
+      {/* Footer */}
+      <footer className="border-t border-[#2a2a3a] bg-[#0a0a0f] py-12">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="flex flex-col gap-8 md:flex-row md:justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-lg font-bold text-white">
+                <span className="text-[#00ff88]">Max</span>AI
+                <span className="text-sm font-medium text-[#94a3b8]">Agencia</span>
+              </div>
+              <p className="mt-2 text-sm text-[#64748b]">
+                Automatización inteligente para tu negocio.
+              </p>
+            </div>
+            <div className="flex gap-8 text-sm text-[#94a3b8]">
+              <a href="#servicios" className="hover:text-[#00ff88]">Servicios</a>
+              <a href="#proceso" className="hover:text-[#00ff88]">Proceso</a>
+              <a href="#precios" className="hover:text-[#00ff88]">Precios</a>
+              <a href="#contacto" className="hover:text-[#00ff88]">Contacto</a>
             </div>
           </div>
-        </footer>
-      </div>
+          <div className="mt-8 border-t border-[#2a2a3a] pt-8 text-center text-xs text-[#64748b]">
+            © {new Date().getFullYear()} MaxAI. Todos los derechos reservados.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

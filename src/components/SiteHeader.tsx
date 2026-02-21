@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n";
-import { ProductsMenu } from "@/components/ProductsMenu";
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -34,7 +33,6 @@ function MenuIcon({ open }: { open: boolean }) {
 export function SiteHeader({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
 
-  // close on route hash change / back
   useEffect(() => {
     function onHashChange() {
       setOpen(false);
@@ -52,110 +50,75 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     langHref: locale === "es" ? "/en" : "/es",
   };
 
-  const NavLinks = ({ mobile }: { mobile?: boolean }) => (
-    <>
-      <a
-        className={
-          mobile
-            ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
-            : "hover:text-white"
-        }
-        href="#servicios"
-        onClick={() => setOpen(false)}
-      >
-        {t.services}
-      </a>
-
-      <a
-        className={
-          mobile
-            ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
-            : "hover:text-white"
-        }
-        href="#proceso"
-        onClick={() => setOpen(false)}
-      >
-        {t.process}
-      </a>
-
-      <a
-        className={
-          mobile
-            ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
-            : "hover:text-white"
-        }
-        href="#precios"
-        onClick={() => setOpen(false)}
-      >
-        {t.pricing}
-      </a>
-
-      <a
-        className={
-          mobile
-            ? "rounded-xl px-4 py-3 text-sm font-semibold text-zinc-100 hover:bg-white/5"
-            : "hover:text-white"
-        }
-        href="#contacto"
-        onClick={() => setOpen(false)}
-      >
-        {t.contact}
-      </a>
-
-      <Link
-        className={
-          mobile
-            ? "mx-4 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
-            : "rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
-        }
-        href={t.langHref}
-        onClick={() => setOpen(false)}
-      >
-        {t.lang}
-      </Link>
-    </>
-  );
-
   return (
-    <header className="relative">
-      <div className="flex items-center justify-between">
-        <Link href={`/${locale}`} className="flex items-center gap-3">
-          <div className="relative h-10 w-10">
-            <Image
-              src="/maxai-logo.svg"
-              alt="MaxAI"
-              fill
-              className="drop-shadow-[0_0_24px_rgba(57,255,20,0.32)]"
-              priority
-            />
-          </div>
-          <div className="text-lg font-semibold tracking-tight">MaxAI</div>
-        </Link>
+    <>
+      {/* Logo */}
+      <Link href={`/${locale}`} className="flex items-center gap-3">
+        <div className="relative h-10 w-10">
+          <Image
+            src="/maxai-logo.svg"
+            alt="MaxAI"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+        <div className="text-xl font-bold text-white">
+          <span className="text-[#00ff88]">Max</span>AI
+        </div>
+      </Link>
 
-        {/* Desktop */}
-        <nav className="hidden items-center gap-5 text-sm text-zinc-300 md:flex">
-          <NavLinks />
-        </nav>
-
-        {/* Mobile */}
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((s) => !s)}
-          className="md:hidden rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 hover:bg-white/[0.07]"
+      {/* Desktop Nav */}
+      <nav className="hidden items-center gap-8 md:flex">
+        <a href="#servicios" className="text-sm font-medium text-[#94a3b8] hover:text-[#00ff88] transition-colors">
+          {t.services}
+        </a>
+        <a href="#proceso" className="text-sm font-medium text-[#94a3b8] hover:text-[#00ff88] transition-colors">
+          {t.process}
+        </a>
+        <a href="#precios" className="text-sm font-medium text-[#94a3b8] hover:text-[#00ff88] transition-colors">
+          {t.pricing}
+        </a>
+        <a href="#contacto" className="text-sm font-medium text-[#94a3b8] hover:text-[#00ff88] transition-colors">
+          {t.contact}
+        </a>
+        <Link
+          href={t.langHref}
+          className="rounded-lg border border-[#2a2a3a] bg-[#1a1a24] px-3 py-1.5 text-xs font-semibold text-white hover:border-[#00ff88]"
         >
-          <MenuIcon open={open} />
-        </button>
-      </div>
+          {t.lang}
+        </Link>
+      </nav>
 
-      {open ? (
-        <div className="mt-4 rounded-2xl border border-white/10 bg-black/40 p-2 backdrop-blur md:hidden">
-          <nav className="flex flex-col gap-1 text-zinc-200">
-            <NavLinks mobile />
+      {/* Mobile Menu Button */}
+      <button
+        type="button"
+        aria-label={open ? "Close menu" : "Open menu"}
+        onClick={() => setOpen(!open)}
+        className="md:hidden rounded-xl border border-[#2a2a3a] bg-[#1a1a24] p-2"
+      >
+        <MenuIcon open={open} />
+      </button>
+
+      {/* Mobile Nav */}
+      {open && (
+        <div className="absolute left-0 right-0 top-full mt-4 rounded-2xl border border-[#2a2a3a] bg-[#0a0a0f] p-4 md:hidden">
+          <nav className="flex flex-col gap-2">
+            <a href="#servicios" className="rounded-xl px-4 py-3 text-sm font-medium text-[#94a3b8] hover:bg-[#1a1a24]">
+              {t.services}
+            </a>
+            <a href="#proceso" className="rounded-xl px-4 py-3 text-sm font-medium text-[#94a3b8] hover:bg-[#1a1a24]">
+              {t.process}
+            </a>
+            <a href="#precios" className="rounded-xl px-4 py-3 text-sm font-medium text-[#94a3b8] hover:bg-[#1a1a24]">
+              {t.pricing}
+            </a>
+            <a href="#contacto" className="rounded-xl px-4 py-3 text-sm font-medium text-[#94a3b8] hover:bg-[#1a1a24]">
+              {t.contact}
+            </a>
           </nav>
         </div>
-      ) : null}
-    </header>
+      )}
+    </>
   );
 }
