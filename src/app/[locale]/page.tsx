@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import * as React from "react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { SiteShell } from "@/components/SiteShell";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { CalendlyCTA } from "@/components/CalendlyCTA";
@@ -45,7 +46,7 @@ function AnimatedText({
 function SectionNumber({ num }: { num: string }) {
   return (
     <motion.span
-      className="block text-xs font-bold tracking-widest text-cyan-400"
+      className="block text-xs font-bold tracking-widest text-#00ff88"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -69,7 +70,7 @@ function StatCard({ value, label, delay = 0 }: { value: string; label: string; d
       transition={{ delay, duration: 0.5 }}
     >
       <div className="text-4xl font-black text-white md:text-5xl">{value}</div>
-      <div className="mt-2 text-sm text-zinc-400">{label}</div>
+      <div className="mt-2 text-sm text-#94a3b8">{label}</div>
     </motion.div>
   );
 }
@@ -89,7 +90,7 @@ function ROICalculator() {
 
   return (
     <motion.div
-      className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8"
+      className="mt-10 rounded-2xl border border-#2a2a3a bg-[#1a1a24] p-6 md:p-8"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -100,9 +101,9 @@ function ROICalculator() {
 
       <div className="space-y-6">
         <div>
-          <div className="flex justify-between text-sm text-zinc-300">
+          <div className="flex justify-between text-sm text-#94a3b8">
             <span>Número de empleados</span>
-            <span className="font-semibold text-cyan-400">{employees}</span>
+            <span className="font-semibold text-#00ff88">{employees}</span>
           </div>
           <input
             type="range"
@@ -110,14 +111,14 @@ function ROICalculator() {
             max="100"
             value={employees}
             onChange={(e) => setEmployees(Number(e.target.value))}
-            className="mt-2 w-full accent-cyan-400"
+            className="mt-2 w-full accent-#00ff88"
           />
         </div>
 
         <div>
-          <div className="flex justify-between text-sm text-zinc-300">
+          <div className="flex justify-between text-sm text-#94a3b8">
             <span>Horas por empleado por semana</span>
-            <span className="font-semibold text-cyan-400">{hoursPerWeek}/hrs</span>
+            <span className="font-semibold text-#00ff88">{hoursPerWeek}/hrs</span>
           </div>
           <input
             type="range"
@@ -125,14 +126,14 @@ function ROICalculator() {
             max="40"
             value={hoursPerWeek}
             onChange={(e) => setHoursPerWeek(Number(e.target.value))}
-            className="mt-2 w-full accent-cyan-400"
+            className="mt-2 w-full accent-#00ff88"
           />
         </div>
 
         <div>
-          <div className="flex justify-between text-sm text-zinc-300">
+          <div className="flex justify-between text-sm text-#94a3b8">
             <span>Costo promedio por hora</span>
-            <span className="font-semibold text-cyan-400">${hourlyCost}</span>
+            <span className="font-semibold text-#00ff88">${hourlyCost}</span>
           </div>
           <input
             type="range"
@@ -140,16 +141,16 @@ function ROICalculator() {
             max="100"
             value={hourlyCost}
             onChange={(e) => setHourlyCost(Number(e.target.value))}
-            className="mt-2 w-full accent-cyan-400"
+            className="mt-2 w-full accent-#00ff88"
           />
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-sm text-zinc-300">¿Incluir beneficios?</span>
+          <span className="text-sm text-#94a3b8">¿Incluir beneficios?</span>
           <button
             onClick={() => setIncludeBenefits(!includeBenefits)}
             className={`flex h-8 w-14 items-center rounded-full p-1 transition-colors ${
-              includeBenefits ? "bg-cyan-400" : "bg-zinc-600"
+              includeBenefits ? "bg-#00ff88" : "bg-zinc-600"
             }`}
           >
             <motion.div
@@ -160,16 +161,16 @@ function ROICalculator() {
           </button>
         </div>
 
-        <div className="mt-6 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-4 text-center">
-          <div className="text-sm text-zinc-300">Costo anual</div>
+        <div className="mt-6 rounded-xl bg-gradient-to-r from-#00ff88/20 to-#7c3aed/20 p-4 text-center">
+          <div className="text-sm text-#94a3b8">Costo anual</div>
           <div className="text-3xl font-black text-white">${annualCost.toLocaleString()}</div>
-          <div className="mt-2 text-sm text-cyan-400">
+          <div className="mt-2 text-sm text-#00ff88">
             ¡Puedes ahorrar ${automationSavings.toLocaleString()}/año con automatización!
           </div>
         </div>
       </div>
 
-      <p className="mt-4 text-xs text-zinc-500">
+      <p className="mt-4 text-xs text-#64748b">
         *Esta calculadora muestra costos laborales directos.
       </p>
     </motion.div>
@@ -194,20 +195,20 @@ function ServiceCard({
 }) {
   return (
     <motion.div
-      className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-cyan-400/30 hover:bg-white/[0.05]"
+      className="group relative rounded-2xl border border-#2a2a3a bg-[#1a1a24] p-6 transition-all hover:border-#00ff88/30 hover:bg-[#1a1a24]"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="mb-4 text-xs font-bold text-cyan-400">{num}</div>
+      <div className="mb-4 text-xs font-bold text-#00ff88">{num}</div>
       <h3 className="text-xl font-bold text-white">{title}</h3>
-      <p className="mt-3 text-sm text-zinc-300">{description}</p>
+      <p className="mt-3 text-sm text-#94a3b8">{description}</p>
       <ul className="mt-4 flex flex-wrap gap-2">
         {bullets.map((bullet) => (
           <li
             key={bullet}
-            className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs text-zinc-400"
+            className="rounded-full border border-#2a2a3a bg-[#1a1a24] px-3 py-1 text-xs text-#94a3b8"
           >
             {bullet}
           </li>
@@ -237,8 +238,8 @@ function PricingCard({
     <motion.div
       className={`relative rounded-2xl border p-6 transition-all ${
         popular
-          ? "border-cyan-400 bg-gradient-to-b from-cyan-500/10 to-transparent"
-          : "border-white/10 bg-white/[0.02]"
+          ? "border-#00ff88 bg-gradient-to-b from-#00ff88/10 to-transparent"
+          : "border-#2a2a3a bg-[#1a1a24]"
       }`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -246,19 +247,19 @@ function PricingCard({
       transition={{ delay, duration: 0.5 }}
     >
       {popular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-cyan-400 px-3 py-1 text-xs font-bold text-black">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-#00ff88 px-3 py-1 text-xs font-bold text-black">
           MÁS POPULAR
         </div>
       )}
       <h3 className="text-xl font-bold text-white">{name}</h3>
-      <p className="mt-2 text-sm text-zinc-400">{description}</p>
+      <p className="mt-2 text-sm text-#94a3b8">{description}</p>
       <div className="mt-4">
         <span className="text-3xl font-black text-white">Contáctanos</span>
       </div>
       <ul className="mt-6 space-y-3">
         {features.map((feature) => (
-          <li key={feature} className="flex items-center gap-2 text-sm text-zinc-300">
-            <svg className="h-4 w-4 flex-shrink-0 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <li key={feature} className="flex items-center gap-2 text-sm text-#94a3b8">
+            <svg className="h-4 w-4 flex-shrink-0 text-#00ff88" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             {feature}
@@ -291,16 +292,16 @@ function TestimonialCard({
 }) {
   return (
     <motion.div
-      className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+      className="rounded-2xl border border-#2a2a3a bg-[#1a1a24] p-6"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
     >
-      <p className="text-lg text-zinc-300">"{quote}"</p>
+      <p className="text-lg text-#94a3b8">"{quote}"</p>
       <div className="mt-4">
         <div className="font-semibold text-white">{name}</div>
-        <div className="text-sm text-zinc-500">{role}</div>
+        <div className="text-sm text-#64748b">{role}</div>
       </div>
     </motion.div>
   );
@@ -328,11 +329,11 @@ function TimelineStep({
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="mb-2 text-xs font-bold uppercase tracking-widest text-cyan-400">
+      <div className="mb-2 text-xs font-bold uppercase tracking-widest text-#00ff88">
         {week}
       </div>
       <h4 className="text-lg font-bold text-white">{title}</h4>
-      <p className="mt-2 text-sm text-zinc-400">{description}</p>
+      <p className="mt-2 text-sm text-#94a3b8">{description}</p>
     </motion.div>
   );
 }
@@ -393,29 +394,35 @@ export default function Page({
   return (
     <SiteShell locale={locale}>
       {/* ============================================================ */}
-      {/* HERO - Fondo limpio profesional */}
+      {/* HERO - Estilo maxai-agents */}
       {/* ============================================================ */}
-      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
-        {/* Fondo gradiente limpio */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Fondo estilo maxai-agents */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black" />
+          <div className="absolute inset-0 bg-[#0a0a0f]" />
           
-          {/* Grid sutil */}
+          {/* Grid pattern */}
           <div 
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-20"
             style={{
               backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
               backgroundSize: '60px 60px'
             }}
           />
           
-          {/* Glow effects */}
-          <div className="absolute -left-32 top-1/4 h-64 w-64 rounded-full bg-cyan-500/10 blur-[100px]" />
-          <div className="absolute -right-32 bottom-1/4 h-64 w-64 rounded-full bg-blue-500/10 blur-[100px]" />
+          {/* Aurora effect */}
+          <div className="absolute inset-0 opacity-30" style={{
+            background: 'radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(0, 255, 136, 0.15) 0%, transparent 40%)'
+          }} />
+          
+          {/* Glow spot */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-40" style={{
+            background: 'radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, transparent 70%)'
+          }} />
         </div>
 
         {/* Overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-transparent to-black/70" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0a0a0f]/70 via-transparent to-[#0a0a0f]" />
 
         {/* Contenido del hero - más compacto */}
         <div className="relative z-20 flex h-full flex-col items-center justify-center px-6">
@@ -426,7 +433,7 @@ export default function Page({
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <span className="inline-block rounded-full border border-cyan-400/40 bg-cyan-400/10 px-5 py-2 text-xs font-bold tracking-[0.25em] text-cyan-400">
+            <span className="inline-block rounded-full border border-#00ff88/40 bg-#00ff88/10 px-5 py-2 text-xs font-bold tracking-[0.25em] text-#00ff88">
               AGENCIA DE AUTOMATIZACIÓN IA
             </span>
           </motion.div>
@@ -440,7 +447,7 @@ export default function Page({
           >
             <h1 className="text-4xl font-black leading-[1.1] tracking-tight text-white md:text-6xl lg:text-7xl">
               <span className="block">ESCALA TUS OPERACIONES</span>
-              <span className="mt-2 block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="mt-2 block bg-gradient-to-r from-#00ff88 to-#7c3aed bg-clip-text text-transparent">
                 SIN CONTRATAR MÁS GENTE
               </span>
             </h1>
@@ -451,7 +458,7 @@ export default function Page({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-6 max-w-xl text-center text-base text-zinc-300 md:text-lg"
+            className="mt-6 max-w-xl text-center text-base text-#94a3b8 md:text-lg"
           >
             Construimos sistemas de IA que manejan tu trabajo repetitivo. Enfócate en crecer, no en tareas manuales.
           </motion.p>
@@ -471,7 +478,7 @@ export default function Page({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="mt-10 text-center text-xs text-zinc-500"
+            className="mt-10 text-center text-xs text-#64748b"
           >
             {/* Trust indicators - eliminado */}
           </motion.p>
@@ -480,7 +487,7 @@ export default function Page({
 
       {/* STATS - en recuadro */}
       <section className="px-6 py-0 md:px-12 -mt-16 relative z-30">
-        <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm p-6 md:p-8">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-#2a2a3a bg-black/60 backdrop-blur-sm p-6 md:p-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <StatCard value="50+" label="Empresas" delay={0} />
             <StatCard value="99%" label="Satisfacción" delay={0.1} />
@@ -534,7 +541,7 @@ export default function Page({
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
             DESPLIEGUE RÁPIDO.
           </h2>
-          <p className="mt-4 text-lg text-zinc-400">De la primera llamada a automatización en solo 6 semanas.</p>
+          <p className="mt-4 text-lg text-#94a3b8">De la primera llamada a automatización en solo 6 semanas.</p>
 
           <div className="mt-16 grid gap-8 md:grid-cols-4">
             {t.timeline.map((step, i) => (
@@ -548,13 +555,13 @@ export default function Page({
             ))}
           </div>
 
-          <div className="mt-16 rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+          <div className="mt-16 rounded-2xl border border-#2a2a3a bg-[#1a1a24] p-8">
             <h3 className="text-xl font-bold text-white">¿QUÉ PASA DESPUÉS DEL LANZAMIENTO?</h3>
-            <p className="mt-2 text-zinc-400">No desaparecemos. Tu automatización mejora con el tiempo.</p>
+            <p className="mt-2 text-#94a3b8">No desaparecemos. Tu automatización mejora con el tiempo.</p>
             <ul className="mt-6 grid gap-4 md:grid-cols-3">
               {t.postLaunchItems.map((item, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-zinc-300">
-                  <svg className="h-5 w-5 flex-shrink-0 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li key={i} className="flex items-center gap-2 text-sm text-#94a3b8">
+                  <svg className="h-5 w-5 flex-shrink-0 text-#00ff88" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   {item}
@@ -572,7 +579,7 @@ export default function Page({
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
             PLANES FLEXIBLES PARA CUALQUIER ESCALA.
           </h2>
-          <p className="mt-4 text-zinc-400">Cada negocio es único. Contáctanos y te armamos un plan a tu medida.</p>
+          <p className="mt-4 text-#94a3b8">Cada negocio es único. Contáctanos y te armamos un plan a tu medida.</p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {t.plans.map((plan, i) => (
@@ -596,7 +603,7 @@ export default function Page({
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
             NO TOMES NUESTRA PALABRA.
           </h2>
-          <p className="mt-4 text-lg text-zinc-400">Empresas que implementaron automatización y no miraron atrás.</p>
+          <p className="mt-4 text-lg text-#94a3b8">Empresas que implementaron automatización y no miraron atrás.</p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {t.testimonials.map((testimonial, i) => (
@@ -619,7 +626,7 @@ export default function Page({
           <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
             ¿LISTO PARA AUTOMATIZAR?
           </h2>
-          <p className="mt-4 text-lg text-zinc-400">
+          <p className="mt-4 text-lg text-#94a3b8">
             Agenda una auditoría gratuita de 30 minutos.
           </p>
           <div className="mt-10">
