@@ -36,7 +36,7 @@ function MatrixRain() {
     const drops = Array(Math.floor(columns)).fill(1);
     
     const draw = () => {
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.02)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${fontSize}px monospace`;
       
@@ -45,7 +45,7 @@ function MatrixRain() {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         
-        ctx.fillStyle = Math.random() > 0.9 ? '#ffffff' : '#00ff88';
+        ctx.fillStyle = Math.random() > 0.95 ? 'rgba(255,255,255,0.3)' : 'rgba(0,255,136,0.15)';
         ctx.fillText(char, x, y);
         
         if (y > canvas.height && Math.random() > 0.975) {
