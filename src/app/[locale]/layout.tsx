@@ -1,5 +1,17 @@
 import { isLocale, type Locale } from "@/lib/i18n";
 
+// Declare custom elements for ElevenLabs widget
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "elevenlabs-convai": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & { "agent-id"?: string },
+        HTMLElement
+      >;
+    }
+  }
+}
+
 export default async function LocaleLayout({
   params,
   children,
