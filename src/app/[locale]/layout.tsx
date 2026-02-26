@@ -1,5 +1,17 @@
 import { isLocale, type Locale } from "@/lib/i18n";
 
+// ElevenLabs custom element type
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "elevenlabs-convai": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & { "agent-id"?: string },
+        HTMLElement
+      >;
+    }
+  }
+}
+
 export default async function LocaleLayout({
   params,
   children,
@@ -17,6 +29,7 @@ export default async function LocaleLayout({
     <div data-locale={locale as Locale}>
       {children}
       {/* ElevenLabs Voice Agent */}
+      {/* @ts-expect-error - Custom element from ElevenLabs */}
       <elevenlabs-convai agent-id="agent_5001kj46azcbf9cbkgjbabqh3k4e"></elevenlabs-convai>
       <script
         src="https://unpkg.com/@elevenlabs/convai-widget-embed"
