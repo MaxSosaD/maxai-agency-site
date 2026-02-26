@@ -13,5 +13,16 @@ export default async function LocaleLayout({
     (await import("next/navigation")).notFound();
   }
 
-  return <div data-locale={locale as Locale}>{children}</div>;
+  return (
+    <div data-locale={locale as Locale}>
+      {children}
+      {/* ElevenLabs Voice Agent */}
+      <elevenlabs-convai agent-id="agent_5001kj46azcbf9cbkgjbabqh3k4e"></elevenlabs-convai>
+      <script
+        src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+        async
+        type="text/javascript"
+      ></script>
+    </div>
+  );
 }
