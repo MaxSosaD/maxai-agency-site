@@ -47,11 +47,11 @@ export function SiteShell({
             <div className="flex flex-col items-center gap-4">
               <p className="text-xs text-[#64748b]">Cryptos aceptadas</p>
               <div className="flex items-center gap-4">
-                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="BTC" className="h-6 w-6" loading="lazy" />
-                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="ETH" className="h-6 w-6" loading="lazy" />
-                <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="SOL" className="h-6 w-6" loading="lazy" />
-                <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg" alt="USDT" className="h-6 w-6" loading="lazy" />
-                <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg" alt="XRP" className="h-6 w-6" loading="lazy" />
+                <img src="/crypto-logos/btc.svg" alt="BTC" className="h-6 w-6" />
+                <img src="/crypto-logos/eth.svg" alt="ETH" className="h-6 w-6" />
+                <img src="/crypto-logos/sol.svg" alt="SOL" className="h-6 w-6" />
+                <img src="/crypto-logos/usdt.svg" alt="USDT" className="h-6 w-6" />
+                <img src="/crypto-logos/xrp.svg" alt="XRP" className="h-6 w-6" />
               </div>
             </div>
             <div className="mt-8 text-center text-xs text-[#64748b]">
