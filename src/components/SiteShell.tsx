@@ -46,12 +46,12 @@ export function SiteShell({
             {/* Cryptos aceptadas */}
             <div className="flex flex-col items-center gap-4">
               <p className="text-xs text-[#64748b]">Cryptos aceptadas</p>
-              <div className="flex items-center gap-4 opacity-50">
-                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="BTC" className="h-5 w-5" />
-                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="ETH" className="h-5 w-5" />
-                <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="SOL" className="h-5 w-5" />
-                <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg" alt="USDT" className="h-5 w-5" />
-                <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg" alt="XRP" className="h-5 w-5" />
+              <div className="flex items-center gap-4">
+                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="BTC" className="h-6 w-6" loading="lazy" />
+                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="ETH" className="h-6 w-6" loading="lazy" />
+                <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="SOL" className="h-6 w-6" loading="lazy" />
+                <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg" alt="USDT" className="h-6 w-6" loading="lazy" />
+                <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg" alt="XRP" className="h-6 w-6" loading="lazy" />
               </div>
             </div>
             <div className="mt-8 text-center text-xs text-[#64748b]">
