@@ -1,5 +1,10 @@
 # MEMORY.md — Long-term context (curated)
 
+## Preferencias de comunicación
+- **Idioma:** Español de México (NO argentino)
+- Evitar expresiones como "boludo", "che", "¿vos?", etc.
+- Usar "tú" (no "vos"), "¿qué?" (no "¿qué tal?" argentino)
+
 ## MaxAI — Dashboard (Command Center)
 - **Proyecto cancelado (2026-02-06):** el usuario decidió eliminarlo por completo y prefiere preguntarle directo a Hugo qué está haciendo.
 - No invertir más tiempo en dashboard/logs automáticos.
