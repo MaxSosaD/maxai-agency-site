@@ -26,12 +26,11 @@ const elevenLabsClientTools = `
       event.detail.config.clientTools = {
         open_whatsapp: function (params) {
           var msg = (params && params.message) ? params.message : "Hola MaxAI, me gustaría más información.";
-          var url = "https://wa.me/${WHATSAPP_NUMBER}?text=" + encodeURIComponent(msg);
-          window.open(url, "_blank");
+          window.location.href = "https://wa.me/${WHATSAPP_NUMBER}?text=" + encodeURIComponent(msg);
           return Promise.resolve("WhatsApp abierto");
         },
         open_calendly: function () {
-          window.open("${CALENDLY_URL}", "_blank");
+          window.location.href = "${CALENDLY_URL}";
           return Promise.resolve("Calendly abierto");
         },
       };
