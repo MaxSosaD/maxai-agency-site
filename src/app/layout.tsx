@@ -13,9 +13,18 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "MaxAI — AI Automation Agency",
+  title: "MaxAI Agencia | Automatización con Inteligencia Artificial para Negocios",
   description:
-    "MaxAI helps companies identify, build, deploy, and scale AI solutions that move the needle.",
+    "Creamos agentes IA y automatizaciones para WhatsApp, llamadas, agenda, ventas y procesos repetitivos. Agenda una auditoría IA gratuita para tu negocio.",
+  keywords:
+    "automatización IA, agencia inteligencia artificial, agentes IA WhatsApp, automatización negocios, IA para empresas, chatbot WhatsApp, automatización de citas, agentes de voz IA",
+  openGraph: {
+    title: "MaxAI Agencia | Automatización con IA para Negocios",
+    description:
+      "Automatizamos WhatsApp, llamadas, agenda, ventas y procesos repetitivos con IA. Auditoría gratuita de 30 minutos.",
+    type: "website",
+    locale: "es_MX",
+  },
 };
 
 export default function RootLayout({
@@ -29,9 +38,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body
-        className={`${dmSans.variable} ${outfit.variable} antialiased`}
-      >
+      <body className={`${dmSans.variable} ${outfit.variable} antialiased`}>
         {children}
       </body>
     </html>
