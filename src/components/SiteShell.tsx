@@ -110,9 +110,17 @@ export function SiteShell({
               <p className="text-xs text-[#64748b]">
                 © {new Date().getFullYear()} MaxAI Agencia. Todos los derechos reservados.
               </p>
-              <p className="text-xs text-[#3a3a4a]">
-                También aceptamos pagos en criptomonedas seleccionadas.
-              </p>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#64748b]">Aceptamos criptomonedas</span>
+                {[
+                  { src: "/crypto-logos/btc.svg", alt: "Bitcoin" },
+                  { src: "/crypto-logos/eth.svg", alt: "Ethereum" },
+                  { src: "/crypto-logos/xrp.svg", alt: "XRP" },
+                  { src: "/crypto-logos/sol.svg", alt: "Solana" },
+                ].map((coin) => (
+                  <img key={coin.alt} src={coin.src} alt={coin.alt} className="h-5 w-5 opacity-60 hover:opacity-100 transition-opacity" />
+                ))}
+              </div>
             </div>
           </div>
         </div>
